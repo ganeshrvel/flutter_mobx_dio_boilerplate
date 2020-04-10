@@ -1,0 +1,142 @@
+name: flutter_mobx_dio_boilerplate
+description: Flutter Mobx Dio Boilerplate
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# Read more about versioning at semver.org.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.6.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flutter_localizations:
+    sdk: flutter
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^0.1.3
+
+  # The following adds the launcher icon support to your application.
+  # run below mentioned commands to generate launcher icons
+  # flutter packages get
+  # flutter packages pub run flutter_launcher_icons:main
+  flutter_launcher_icons: ^0.7.4
+
+  # MobX is a library for reactively managing the state of your applications. Use the power of
+  # observables, actions, and reactions to supercharge your Dart and Flutter apps.
+  mobx: ^0.3.10
+  flutter_mobx: ^0.3.4+1
+
+  # An helper to easily exposes a value using InheritedWidget without having to write one.
+  provider: ^4.0.0
+
+  # Service locator
+  get_it: ^4.0.0
+  injectable: ^0.3.0
+
+  # API fetching
+  dio: ^3.0.8
+  pretty_dio_logger: ^1.1.1
+
+  # Connectivity
+  data_connection_checker: ^0.3.4
+
+  # Local cache
+  shared_preferences: ^0.5.6
+
+  meta: ^1.1.8
+
+  # Logging
+  logger: ^0.8.3
+
+  # Routing
+  auto_route: ^0.4.2
+
+  # Json
+  json_serializable: ^3.2.5
+  json_annotation: ^3.0.1
+
+  # snackbar
+  flushbar:
+    git:
+      url: https://github.com/AndreHaueisen/flushbar.git
+  flash: ^1.2.3
+
+  after_layout: ^1.0.7+2
+
+  equatable: ^1.1.1
+
+  # video player
+  chewie: ^0.9.10
+  video_player: ^0.10.8+1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # Linting
+  lint: ^1.1.1
+
+  # Build runner
+  build_runner: ^1.7.2
+
+  # Service locator
+  injectable_generator: ^0.3.0
+
+  # MobX
+  mobx_codegen: ^0.3.10+1
+
+  # Routing
+  auto_route_generator: ^0.4.0
+
+flutter_icons:
+  image_path: "assets/icons/ic_launcher.png"
+  android: true
+  ios: true
+  macos: true
+
+# For information on the generic Dart part of this file, see the
+# following page: https://www.dartlang.org/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  #  assets:
+  #    - assets/images/
+  #    - assets/icons/
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.io/assets-and-images/#resolution-aware.
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.io/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  #  fonts:
+  #    - family: ProductSans
+  #      fonts:
+  #        - asset: assets/fonts/Product-Sans-Regular.ttf
+  #        - asset: assets/fonts/Product-Sans-Italic.ttf
+  #          style: italic
+  #        - asset: assets/fonts/Product-Sans-Bold.ttf
+  #          weight: 700
+
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.io/custom-fonts/#from-packages
