@@ -207,7 +207,7 @@ The boilerplate follows a fusion of Clean architecture and MVVM pattern. It is h
 ![architecture diagram](https://github.com/ganeshrvel/flutter_mobx_dio_boilerplate/blob/master/blobs/architecture-diagram.png "architecture diagram")
 
 ### DC (Data Channel)
-The data flow is controlled using DC (lib/common/models/dc_model.dart). These are commonly used in repository codes.
+The data flow is controlled using DC (lib/utils/data_channel/data_channel.dart). These are commonly used in repository codes.
 
 It is not a very ideal situation to handle exceptions using try and catch at every function call.
 Use `DC<Exception, LoginDataModel>(error: Exception, data: LoginDataModel(id: 1))` instead.

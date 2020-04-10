@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import 'package:flutter_mobx_dio_boilerplate/common/models/dc_model.dart';
+import 'package:flutter_mobx_dio_boilerplate/utils/data_channel/data_channel.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/data/models/authentication_model.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/data/models/post_login_request_model.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/data/models/post_login_response_model.dart';
