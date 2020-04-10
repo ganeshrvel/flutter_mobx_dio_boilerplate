@@ -206,6 +206,75 @@ The boilerplate follows a fusion of Clean architecture and MVVM pattern. It is h
 
 ![architecture diagram](https://github.com/ganeshrvel/flutter_mobx_dio_boilerplate/blob/master/blobs/architecture-diagram.png "architecture diagram")
 
+### DC (Data Channel)
+The data flow is controlled using DC (lib/common/models/dc_model.dart). These are commonly used in repository codes.
+
+It is not a very ideal situation to handle exceptions using try and catch at every function call.
+Use `DC<Exception, LoginDataModel>(error: Exception, data: LoginDataModel(id: 1))` instead.
+
+```dart
+// example usage:
+Future<DC<Exception, LoginModel>> getSomeLoginData() async {
+ try {
+   return DC.data(
+     someData,
+   );
+ } on Exception {
+   return DC.error(
+     CacheException(),
+   );
+ }
+}
+```
+
+```dart
+// check for errors
+void doSomething(){
+  final value = await getSomeLoginData();
+
+  if(value.hasError){
+    // do something
+  }
+  else(value.hasData){
+    // do something
+  }
+}
+```
+
+```dart
+// DC forward
+// Easily convert and forward back an incoming data model to another one
+// This will help us in getting rid of the reduntant error checks
+// In case an error is encountered then DC.forward will send back just the error else the data will be sent to the callee.
+
+Future<DC<Exception, UserModel>> checkSomethingAndReturn(){
+  final loginData = await getSomeLoginData();
+
+  return DC.forward(
+     loginData,
+     UserModel(id: loginData.data?.tokenId),
+   );
+}
+```
+
+```dart
+// DC pick
+final appData = await getSomeLoginData();
+appData.pick(
+  onError: (error) {
+    if (error is CacheException) {
+      alerts.setException(context, error);
+    }
+  },
+  onData: (data) {
+    value1 = data;
+  },
+  onNoData: () {
+    value1 = getDefaultValue();
+  },
+);
+```
+
  ### Contribute
 - Fork the repo and create your branch from master.
 - Ensure that the changes pass linting.
