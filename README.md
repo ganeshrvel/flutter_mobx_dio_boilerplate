@@ -204,6 +204,7 @@ Clone the repo https://github.com/ganeshrvel/auth-apis and follow the instructio
 ### Architecture
 The boilerplate follows a fusion of Clean architecture and MVVM pattern. It is highly customizable and feature-rich.
 
+![architecture diagram](https://github.com/ganeshrvel/flutter_mobx_dio_boilerplate/blob/master/blobs/architecture-diagram.png "architecture diagram")
 
  ### Contribute
 - Fork the repo and create your branch from master.
