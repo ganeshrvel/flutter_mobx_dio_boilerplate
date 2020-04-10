@@ -217,7 +217,7 @@ Use `DC<Exception, LoginDataModel>(error: Exception, data: LoginDataModel(id: 1)
 Future<DC<Exception, LoginModel>> getSomeLoginData() async {
  try {
    return DC.data(
-     someData,
+     LoginModel(userId:1),
    );
  } on Exception {
    return DC.error(
