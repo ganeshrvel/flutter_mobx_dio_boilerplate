@@ -27,6 +27,8 @@ $ cd flutter_mobx_dio_boilerplate
 ```
 
 ```shell
+
+$ flutter create .
 $ flutter pub get
 $ flutter pub upgrade
 ```
