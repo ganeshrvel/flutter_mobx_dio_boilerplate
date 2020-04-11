@@ -132,9 +132,7 @@ abstract class _LoginStoreBase with Store {
   Future<void> logout(BuildContext context, {bool redirectToHome}) async {
     final _redirectToHome = redirectToHome ?? true;
 
-    isLoggedInStatus = StateStatus.LOADING;
     final logoutData = await loginController.logout();
-    isLoggedInStatus = StateStatus.SUCCESS;
 
     logoutData.pick(
       onError: (error) {
