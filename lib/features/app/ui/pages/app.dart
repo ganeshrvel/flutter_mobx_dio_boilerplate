@@ -42,10 +42,7 @@ class App extends StatelessWidget {
         builder: (context) {
           if (!_appStore.isAppSettingsLoaded) {
             return Center(
-              child: Container(
-                height: 0,
-                width: 0,
-              ),
+              child: Container(),
             );
           }
 
