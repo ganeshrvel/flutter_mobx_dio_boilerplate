@@ -2,8 +2,6 @@
 
 ```shell
 $ git config core.hooksPath .githooks/
-$ mv .githooks/pre-commit.sample .githooks/pre-commit
-
 $ which flutter
 
 # Open .githooks/pre-commit in your IDE
