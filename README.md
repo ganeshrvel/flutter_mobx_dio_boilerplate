@@ -17,7 +17,8 @@
 - auto_route for routing (https://pub.dev/packages/auto_route)
 - Multi theme support
 - Multilingual support (l10n)
-- Logging
+- Pre-commit hooks
+- Logging using `logger` (lib/utils/log)
 
 ### Installation
 ```shell
@@ -45,20 +46,59 @@ This boilerplate uses code generation tools to automatically generate code durin
 ./scripts/build-runner-watch.sh
 ```
 
-### Hide Generated Files
-
-In-order to hide generated files, navigate to `Android Studio` -> `Preferences` -> `Editor` -> `File Types` and past the below lines under `ignore files and folders` section:
-
-```
-*.inject.summary;*.inject.dart;*.g.dart;
+### Configuration
+Activate pre-commit hooks
+```shell
+$ git config core.hooksPath .githooks/
 ```
 
-In Visual Studio Code, navigate to `Preferences` -> `Settings` and search for `Files:Exclude`. Add the following patterns:
+To activate network connection in macOS, add the following lines to your *macos/Runner/DebugProfile.entitlements* and *macos/Runner/Release.entitlements*
+```xml
+    <key>com.apple.security.network.server</key>
+    <true/>
+    <key>com.apple.security.network.client</key>
+    <true/>
 ```
-**/*.inject.summary
-**/*.inject.dart
-**/*.g.dart
+
+To activate video player in,
+macOS: add the following lines to your *macos/Runner/Info.plist*
+```xml
+    <key>NSAppTransportSecurity</key>
+    <dict>
+      <key>NSAllowsArbitraryLoads</key>
+      <true/>
+    </dict>
 ```
+
+iOS: add the following lines to your *ios/Runner/Info.plist*
+```xml
+    <key>NSAppTransportSecurity</key>
+    <dict>
+      <key>NSAllowsArbitraryLoads</key>
+      <true/>
+    </dict>
+```
+
+Android: Ensure the following permission is present in your Android Manifest file, located in *android/app/src/main/AndroidManifest.xml*
+```xml
+<uses-permission android:name="android.permission.INTERNET"/>
+```
+
+and add the attribute `android:usesCleartextTraffic="true"` to `<application`
+
+```xml
+# example
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="abc.xyz.pqr">
+	<uses-permission android:name="android.permission.INTERNET"/>
+	
+	<application
+        android:usesCleartextTraffic="true"
+		....
+		...
+		/>
+```
+
 
 ### APIS
 
@@ -294,6 +334,22 @@ appData.pick(
     value1 = getDefaultValue(); 
   },
 );
+```
+
+### IDE
+**Hide Generated Files**
+
+In-order to hide generated files, navigate to `Android Studio` -> `Preferences` -> `Editor` -> `File Types` and paste the below lines under `Ignore files and Folders` section:
+
+```
+*.inject.summary;*.inject.dart;*.g.dart;
+```
+
+In Visual Studio Code, navigate to `Preferences` -> `Settings` and search for `Files:Exclude`. Add the following patterns:
+```
+**/*.inject.summary
+**/*.inject.dart
+**/*.g.dart
 ```
 
  ### Contribute
