@@ -19,6 +19,4 @@ Future<void> main() async {
   await di.init();
 
   runApp(App());
-
-  print('');
 }
