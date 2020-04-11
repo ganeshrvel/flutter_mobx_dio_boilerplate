@@ -58,8 +58,7 @@ class ApiClient {
     }
   }
 
-  Future<Response> put(
-      String path, dynamic data) async {
+  Future<Response> put(String path, dynamic data) async {
     try {
       return await dio.put(path, data: data);
     } on BadNetworkApiError {

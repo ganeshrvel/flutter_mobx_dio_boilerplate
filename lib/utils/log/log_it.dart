@@ -9,7 +9,8 @@ class LogIt {
   LogIt(this.logger);
 
   /// Log a message at level [Level.verbose].
-  void verbose(dynamic message, {
+  void verbose(
+    dynamic message, {
     dynamic error,
     bool showInProd = false,
     StackTrace stackTrace,
@@ -22,7 +23,8 @@ class LogIt {
   }
 
   /// Log a message at level [Level.debug].
-  void debug(dynamic message, {
+  void debug(
+    dynamic message, {
     dynamic error,
     bool showInProd = false,
     StackTrace stackTrace,
@@ -35,7 +37,8 @@ class LogIt {
   }
 
   /// Log a message at level [Level.info].
-  void info(dynamic message, {
+  void info(
+    dynamic message, {
     dynamic error,
     bool showInProd = false,
     StackTrace stackTrace,
@@ -48,7 +51,8 @@ class LogIt {
   }
 
   /// Log a message at level [Level.warning].
-  void warn(dynamic message, {
+  void warn(
+    dynamic message, {
     dynamic error,
     bool showInProd = false,
     StackTrace stackTrace,
@@ -61,7 +65,8 @@ class LogIt {
   }
 
   /// Log a message at level [Level.error].
-  void error(dynamic message, {
+  void error(
+    dynamic message, {
     dynamic error,
     bool showInProd = false,
     StackTrace stackTrace,
@@ -74,7 +79,8 @@ class LogIt {
   }
 
   /// Log a message at level [Level.wtf].
-  void wtf(dynamic message, {
+  void wtf(
+    dynamic message, {
     dynamic error,
     bool showInProd = false,
     StackTrace stackTrace,

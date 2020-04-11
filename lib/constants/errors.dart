@@ -20,5 +20,6 @@ class Errors {
 
   static const String UNKNOWN_FAILURE_MESSAGE = 'Some unknown error occured';
 
-  static const String INACCESSIBLE_ROUTE_MESSAGE = 'The route is inaccessible. Please login first';
+  static const String INACCESSIBLE_ROUTE_MESSAGE =
+      'The route is inaccessible. Please login first';
 }
