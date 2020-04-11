@@ -40,6 +40,15 @@ class App extends StatelessWidget {
       ],
       child: Observer(
         builder: (context) {
+          if (!_appStore.isAppSettingsLoaded) {
+            return Center(
+              child: Container(
+                height: 0,
+                width: 0,
+              ),
+            );
+          }
+
           return MaterialApp(
             debugShowCheckedModeBanner: Env.data.debugShowCheckedModeBanner,
             debugShowMaterialGrid: Env.data.debugShowMaterialGrid,

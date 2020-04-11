@@ -43,10 +43,15 @@ abstract class _AppStoreBase with Store {
   }
 
   @observable
-  LanguageModel language = getDefaultAppLanguage();
+  LanguageModel language;
 
   @observable
-  ThemeModel theme = getDefaultAppTheme();
+  ThemeModel theme;
+
+  @computed
+  bool get isAppSettingsLoaded {
+    return language != null && theme != null;
+  }
 
   @action
   Future<void> setAppLanguage(

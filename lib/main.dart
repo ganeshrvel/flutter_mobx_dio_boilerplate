@@ -13,7 +13,7 @@ Future<void> main() async {
     DeviceOrientation.landscapeLeft,
     DeviceOrientation.landscapeRight,
   ]);
- 
+
   Env.init();
 
   await di.init();

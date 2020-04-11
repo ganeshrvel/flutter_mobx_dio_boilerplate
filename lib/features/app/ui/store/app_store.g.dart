@@ -9,6 +9,13 @@ part of 'app_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$AppStore on _AppStoreBase, Store {
+  Computed<bool> _$isAppSettingsLoadedComputed;
+
+  @override
+  bool get isAppSettingsLoaded => (_$isAppSettingsLoadedComputed ??=
+          Computed<bool>(() => super.isAppSettingsLoaded))
+      .value;
+
   final _$languageAtom = Atom(name: '_AppStoreBase.language');
 
   @override
