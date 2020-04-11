@@ -143,8 +143,6 @@ abstract class _LoginStoreBase with Store {
         }
 
         alerts.setException(context, error);
-
-        return;
       },
       onData: (data) {
         if (_redirectToHome) {

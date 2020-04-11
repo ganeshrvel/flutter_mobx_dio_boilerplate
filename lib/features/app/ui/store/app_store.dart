@@ -85,8 +85,6 @@ abstract class _AppStoreBase with Store {
         }
 
         language = getDefaultAppLanguage();
-
-        return;
       },
       onData: (data) {
         language = data;
@@ -111,8 +109,6 @@ abstract class _AppStoreBase with Store {
         }
 
         theme = getDefaultAppTheme();
-
-        return;
       },
       onData: (data) {
         theme = data;
@@ -134,8 +130,6 @@ abstract class _AppStoreBase with Store {
         }
 
         theme = getDefaultAppTheme();
-
-        return;
       },
       onData: (data) {
         theme = data;

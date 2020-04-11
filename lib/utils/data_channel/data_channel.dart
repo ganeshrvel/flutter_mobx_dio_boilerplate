@@ -64,6 +64,24 @@ import 'package:meta/meta.dart';
 ///  },
 /// );
 ///
+/// or
+///
+/// appData.pick(
+///    onError: (error) {
+///      if (error is CacheException) {
+///      alerts.setException(context, error);
+///      }
+///    },
+///    onNoError: (data) {
+///      if(data != null){
+///        value1 = data;
+///
+///        return;
+///      }
+///
+///      value1 = getDefaultValue();
+///    },
+///  );
 ///
 
 class DC<Error, Data> {
@@ -105,6 +123,7 @@ class DC<Error, Data> {
 
   void pick({
     Function(Error error) onError,
+    Function(Data data) onNoError,
     Function(Data data) onData,
     Function() onNoData,
   }) {
@@ -112,6 +131,12 @@ class DC<Error, Data> {
       if (onError != null) {
         onError(error);
       }
+
+      return;
+    }
+
+    if (onNoError != null) {
+      onNoError(data);
 
       return;
     }
@@ -126,6 +151,8 @@ class DC<Error, Data> {
 
     if (onNoData != null) {
       onNoData();
+
+      return;
     }
   }
 }

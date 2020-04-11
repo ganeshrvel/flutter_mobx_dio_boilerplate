@@ -275,6 +275,25 @@ appData.pick(
     value1 = getDefaultValue();
   },
 );
+
+// or
+
+appData.pick(
+  onError: (error) {
+    if (error is CacheException) {
+      alerts.setException(context, error);
+    }
+  },
+  onNoError: (data) {
+    if(data != null){
+      value1 = data;
+    
+      return;
+    }
+    
+    value1 = getDefaultValue(); 
+  },
+);
 ```
 
  ### Contribute
