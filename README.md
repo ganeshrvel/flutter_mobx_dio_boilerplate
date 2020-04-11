@@ -20,7 +20,7 @@
 - Pre-commit hooks
 - Logging using [logger](https://pub.dev/packages/logger "logger") (lib/utils/log)
 
-*Scoll down to the bottom for the tutorial links*
+[Find the tutorial links](https://github.com/ganeshrvel/flutter_mobx_dio_boilerplate#tutorials "Find the tutorial links")
 
 ### Installation
 ```shell
@@ -370,11 +370,11 @@ In Visual Studio Code, navigate to `Preferences` -> `Settings` and search for `F
 When you submit code changes, your submissions are understood to be under the same [MIT License](https://github.com/ganeshrvel/flutter_mobx_dio_boilerplate/blob/master/LICENSE "MIT License") that covers the project. Feel free to contact the maintainers if that's a concern.
 
 ### Tutorials
-Flutter MobX –https://www.youtube.com/watch?v=8j7W91ZJuV0
-Flutter Clean Architecture - https://www.youtube.com/watch?v=KjE2IDphA_U
-Flutter Dependency Injection - https://www.youtube.com/watch?v=gfLb4rqzio4
-Flutter Injectable - https://www.youtube.com/watch?v=KNcP8z0hWqs
-Flutter Auto Route - https://www.youtube.com/watch?v=iVpVBmDhpJY
+- Flutter MobX –https://www.youtube.com/watch?v=8j7W91ZJuV0
+- Flutter Clean Architecture - https://www.youtube.com/watch?v=KjE2IDphA_U
+- Flutter Dependency Injection - https://www.youtube.com/watch?v=gfLb4rqzio4
+- Flutter Injectable - https://www.youtube.com/watch?v=KNcP8z0hWqs
+- Flutter Auto Route - https://www.youtube.com/watch?v=iVpVBmDhpJY
 
 ### Buy me a coffee
 Help me keep the app FREE and open for all.
