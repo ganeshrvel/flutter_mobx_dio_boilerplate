@@ -1,17 +1,15 @@
 #!/usr/bin/env bash
-PATH="~/apps/flutter/bin/flutter:$PATH"
-export PATH
 
 ##### Flutter formatter
 printf "\n"
 printf "\e[33;1m%s\e[0m\n" 'Running the Flutter formatter'
-~/apps/flutter/bin/flutter format ./lib/
+/path/to/flutter/bin/flutter format ./lib/
 
 
 ##### Flutter analyzer
 printf "\n"
 printf "\e[33;1m%s\e[0m\n" 'Running the Flutter analyzer'
-~/apps/flutter/bin/flutter analyze ./lib/
+/path/to/flutter/bin/flutter analyze ./lib/
 if [ $? -ne 0 ]; then
   printf "\e[31;1m%s\e[0m\n" 'Flutter analyzer error'
   exit 1
@@ -21,7 +19,7 @@ fi
 ##### Unit tests
 # printf "\n"
 # printf "\e[33;1m%s\e[0m\n" 'Running unit tests'
-# ~/apps/flutter/bin/flutter test
+# /path/to/flutter/bin/flutter test
 # if [ $? -ne 0 ]; then
 #   printf "\e[31;1m%s\e[0m\n" 'Unit tests error'
 #   exit 1

@@ -18,7 +18,7 @@
 - Multi theme support
 - Multilingual support (l10n)
 - Pre-commit hooks
-- Logging using `logger` (lib/utils/log)
+- Logging using [logger](https://pub.dev/packages/logger "logger") (lib/utils/log)
 
 ### Installation
 ```shell
@@ -47,9 +47,14 @@ This boilerplate uses code generation tools to automatically generate code durin
 ```
 
 ### Configuration
-Activate pre-commit hooks
+**Activate pre-commit hooks**
 ```shell
 $ git config core.hooksPath .githooks/
+$ mv .githooks/pre-commit.sample .githooks/pre-commit
+
+# Run:
+$ which flutter
+# Open .githooks/pre-commit in your IDE and replace all the occurrences of `/path/to/flutter/bin/flutter` with the output of `which flutter`
 ```
 
 To activate network connection in macOS, add the following lines to your *macos/Runner/DebugProfile.entitlements* and *macos/Runner/Release.entitlements*
