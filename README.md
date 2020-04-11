@@ -259,7 +259,7 @@ The boilerplate follows a fusion of Clean architecture and MVVM pattern. It is h
 ### DC (Data Channel)
 It is not a very ideal solution to handle exceptions using try and catch at every function call, use `data_channel` instead. `data_channel` will take care of routing errors and data out of a method.
 
-**data_channel (DC)** is a simple dart utility for exception handling and data routing.
+**data_channel (DC)** is a simple dart utility for handling exceptions and data routing.
 
 Refer to https://pub.dev/packages/data_channel for more details.
 
