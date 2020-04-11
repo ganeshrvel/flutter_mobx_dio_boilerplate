@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:injectable/injectable.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/exceptions/exceptions.dart';
-import 'package:flutter_mobx_dio_boilerplate/utils/data_channel/data_channel.dart';
+import 'package:data_channel/data_channel.dart';
 import 'package:flutter_mobx_dio_boilerplate/constants/shared_preferences_keys.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/data/models/authentication_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';

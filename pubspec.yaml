@@ -41,6 +41,9 @@ dependencies:
   get_it: ^4.0.0
   injectable: ^0.3.0
 
+  # data channel
+  data_channel: ^1.0.1
+
   # API fetching
   dio: ^3.0.8
   pretty_dio_logger: ^1.1.1

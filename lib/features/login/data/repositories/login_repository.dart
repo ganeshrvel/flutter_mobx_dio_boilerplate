@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import 'package:flutter_mobx_dio_boilerplate/utils/data_channel/data_channel.dart';
+import 'package:data_channel/data_channel.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/network/network_info.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/data/data_sources/login_local_data_source.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/data/data_sources/login_remote_data_source.dart';

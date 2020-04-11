@@ -15,6 +15,7 @@
 - Dio for fetching APIs (https://pub.dev/packages/dio)
 - GetIt/Injectable for Dependecy Injection (DI) (https://pub.dev/packages/get_It and https://pub.dev/packages/injectable)
 - auto_route for routing (https://pub.dev/packages/auto_route)
+- data_channel for exception handling and data routing (https://pub.dev/packages/data_channel)
 - Multi theme support
 - Multilingual support (l10n)
 - Pre-commit hooks
@@ -106,7 +107,6 @@ and add the attribute `android:usesCleartextTraffic="true"` to `<application`
 		...
 		/>
 ```
-
 
 ### APIS
 
@@ -257,92 +257,11 @@ The boilerplate follows a fusion of Clean architecture and MVVM pattern. It is h
 ![architecture diagram](https://github.com/ganeshrvel/flutter_mobx_dio_boilerplate/blob/master/blobs/architecture-diagram.png "architecture diagram")
 
 ### DC (Data Channel)
-The data flow is controlled using DC (lib/utils/data_channel/data_channel.dart). These are commonly used in repository codes.
+It is not a very ideal solution to handle exceptions using try and catch at every function call, use `data_channel` instead. `data_channel` will take care of routing errors and data out of a method.
 
-It is not a very ideal situation to handle exceptions using try and catch at every function call.
-Use `DC<Exception, LoginDataModel>(error: Exception, data: LoginDataModel(id: 1))` instead.
+**data_channel (DC)** is a simple dart utility for exception handling and data routing.
 
-```dart
-// example usage:
-Future<DC<Exception, LoginModel>> getSomeLoginData() async {
- try {
-   return DC.data(
-     LoginModel(userId:1),
-   );
- } on Exception {
-   return DC.error(
-     CacheException(),
-   );
- }
-}
-```
-
-```dart
-// check for errors
-void doSomething(){
-  final value = await getSomeLoginData();
-
-  if(value.hasError){
-    // do something
-  }
-  else(value.hasData){
-    // do something
-  }
-}
-```
-
-```dart
-// DC forward
-// Easily convert and forward back an incoming data model to another one
-// This will help us in getting rid of the reduntant error checks
-// In case an error is encountered then DC.forward will send back just the error else the data will be sent to the callee.
-
-Future<DC<Exception, UserModel>> checkSomethingAndReturn(){
-  final loginData = await getSomeLoginData();
-
-  return DC.forward(
-     loginData,
-     UserModel(id: loginData.data?.tokenId),
-   );
-}
-```
-
-```dart
-// DC pick
-final appData = await getSomeLoginData();
-appData.pick(
-  onError: (error) {
-    if (error is CacheException) {
-      alerts.setException(context, error);
-    }
-  },
-  onData: (data) {
-    value1 = data;
-  },
-  onNoData: () {
-    value1 = getDefaultValue();
-  },
-);
-
-// or
-
-appData.pick(
-  onError: (error) {
-    if (error is CacheException) {
-      alerts.setException(context, error);
-    }
-  },
-  onNoError: (data) {
-    if(data != null){
-      value1 = data;
-    
-      return;
-    }
-    
-    value1 = getDefaultValue(); 
-  },
-);
-```
+Refer to https://pub.dev/packages/data_channel for more details.
 
 ### IDE
 **Hide Generated Files**
