@@ -6,7 +6,7 @@
 - Contacts: ganeshrvel@outlook.com
 - Requirements: Flutter and Dart
 
-##### Advanced and highly scalable boilerplate for building Flutter App - Mobx, Dio, GetIt and AutoRoutes.
+#### Advanced and highly scalable boilerplate for building Flutter App - Mobx, Dio, GetIt and AutoRoutes.
 
 ###### Flutter is an excellent framework for building cross-platform native applications. But there are only a handful of frameworks available online to get going and I found most of them lack advanced features.
 
@@ -19,6 +19,8 @@
 - Multilingual support (l10n)
 - Pre-commit hooks
 - Logging using [logger](https://pub.dev/packages/logger "logger") (lib/utils/log)
+
+*Scoll down to the bottom for the tutorial links*
 
 ### Installation
 ```shell
@@ -47,14 +49,15 @@ This boilerplate uses code generation tools to automatically generate code durin
 ```
 
 ### Configuration
-**Activate pre-commit hooks**
+Activate pre-commit hooks
 ```shell
 $ git config core.hooksPath .githooks/
 $ mv .githooks/pre-commit.sample .githooks/pre-commit
 
-# Run:
 $ which flutter
-# Open .githooks/pre-commit in your IDE and replace all the occurrences of `/path/to/flutter/bin/flutter` with the output of `which flutter`
+
+# Open .githooks/pre-commit in your IDE
+# Replace all the occurrences of `/path/to/flutter/bin/flutter` with the output of `which flutter`
 ```
 
 To activate network connection in macOS, add the following lines to your *macos/Runner/DebugProfile.entitlements* and *macos/Runner/Release.entitlements*
@@ -366,6 +369,12 @@ In Visual Studio Code, navigate to `Preferences` -> `Settings` and search for `F
 
 When you submit code changes, your submissions are understood to be under the same [MIT License](https://github.com/ganeshrvel/flutter_mobx_dio_boilerplate/blob/master/LICENSE "MIT License") that covers the project. Feel free to contact the maintainers if that's a concern.
 
+### Tutorials
+Flutter MobX –https://www.youtube.com/watch?v=8j7W91ZJuV0
+Flutter Clean Architecture - https://www.youtube.com/watch?v=KjE2IDphA_U
+Flutter Dependency Injection - https://www.youtube.com/watch?v=gfLb4rqzio4
+Flutter Injectable - https://www.youtube.com/watch?v=KNcP8z0hWqs
+Flutter Auto Route - https://www.youtube.com/watch?v=iVpVBmDhpJY
 
 ### Buy me a coffee
 Help me keep the app FREE and open for all.
@@ -373,7 +382,6 @@ Paypal me: [paypal.me/ganeshrvel](https://paypal.me/ganeshrvel "paypal.me/ganesh
 
 ### Contacts
 Please feel free to contact me at ganeshrvel@outlook.com
-
 
 ### License
 flutter_mobx_dio_boilerplate | Flutter Mobx Dio Boilerplate is released under [MIT License](https://github.com/ganeshrvel/flutter_mobx_dio_boilerplate/blob/master/LICENSE "MIT License").
