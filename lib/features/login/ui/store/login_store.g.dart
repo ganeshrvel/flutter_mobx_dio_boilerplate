@@ -6,61 +6,55 @@ part of 'login_store.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$LoginStore on _LoginStoreBase, Store {
   final _$isLoggedInStatusAtom = Atom(name: '_LoginStoreBase.isLoggedInStatus');
 
   @override
   StateStatus get isLoggedInStatus {
-    _$isLoggedInStatusAtom.context.enforceReadPolicy(_$isLoggedInStatusAtom);
-    _$isLoggedInStatusAtom.reportObserved();
+    _$isLoggedInStatusAtom.reportRead();
     return super.isLoggedInStatus;
   }
 
   @override
   set isLoggedInStatus(StateStatus value) {
-    _$isLoggedInStatusAtom.context.conditionallyRunInAction(() {
+    _$isLoggedInStatusAtom.reportWrite(value, super.isLoggedInStatus, () {
       super.isLoggedInStatus = value;
-      _$isLoggedInStatusAtom.reportChanged();
-    }, _$isLoggedInStatusAtom, name: '${_$isLoggedInStatusAtom.name}_set');
+    });
   }
 
   final _$isLoggedInAtom = Atom(name: '_LoginStoreBase.isLoggedIn');
 
   @override
   bool get isLoggedIn {
-    _$isLoggedInAtom.context.enforceReadPolicy(_$isLoggedInAtom);
-    _$isLoggedInAtom.reportObserved();
+    _$isLoggedInAtom.reportRead();
     return super.isLoggedIn;
   }
 
   @override
   set isLoggedIn(bool value) {
-    _$isLoggedInAtom.context.conditionallyRunInAction(() {
+    _$isLoggedInAtom.reportWrite(value, super.isLoggedIn, () {
       super.isLoggedIn = value;
-      _$isLoggedInAtom.reportChanged();
-    }, _$isLoggedInAtom, name: '${_$isLoggedInAtom.name}_set');
+    });
   }
 
   final _$errorMessageAtom = Atom(name: '_LoginStoreBase.errorMessage');
 
   @override
   String get errorMessage {
-    _$errorMessageAtom.context.enforceReadPolicy(_$errorMessageAtom);
-    _$errorMessageAtom.reportObserved();
+    _$errorMessageAtom.reportRead();
     return super.errorMessage;
   }
 
   @override
   set errorMessage(String value) {
-    _$errorMessageAtom.context.conditionallyRunInAction(() {
+    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
       super.errorMessage = value;
-      _$errorMessageAtom.reportChanged();
-    }, _$errorMessageAtom, name: '${_$errorMessageAtom.name}_set');
+    });
   }
 
-  final _$doLoginAsyncAction = AsyncAction('doLogin');
+  final _$doLoginAsyncAction = AsyncAction('_LoginStoreBase.doLogin');
 
   @override
   Future<void> doLogin(BuildContext context, PostLoginRequestModel params,
@@ -69,7 +63,8 @@ mixin _$LoginStore on _LoginStoreBase, Store {
         () => super.doLogin(context, params, redirectOnLogin: redirectOnLogin));
   }
 
-  final _$getAuthenticationAsyncAction = AsyncAction('getAuthentication');
+  final _$getAuthenticationAsyncAction =
+      AsyncAction('_LoginStoreBase.getAuthentication');
 
   @override
   Future<void> getAuthentication(BuildContext context) {
@@ -77,11 +72,20 @@ mixin _$LoginStore on _LoginStoreBase, Store {
         .run(() => super.getAuthentication(context));
   }
 
-  final _$logoutAsyncAction = AsyncAction('logout');
+  final _$logoutAsyncAction = AsyncAction('_LoginStoreBase.logout');
 
   @override
   Future<void> logout(BuildContext context, {bool redirectToHome}) {
     return _$logoutAsyncAction
         .run(() => super.logout(context, redirectToHome: redirectToHome));
+  }
+
+  @override
+  String toString() {
+    return '''
+isLoggedInStatus: ${isLoggedInStatus},
+isLoggedIn: ${isLoggedIn},
+errorMessage: ${errorMessage}
+    ''';
   }
 }

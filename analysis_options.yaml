@@ -16,6 +16,7 @@ analyzer:
   errors:
     non_constant_identifier_names: ignore
     avoid_classes_with_only_static_members: ignore
+    avoid_redundant_argument_values: ignore
     prefer_const_declarations: error
     constant_identifier_names: ignore
     missing_required_param: error

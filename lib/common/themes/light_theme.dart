@@ -27,7 +27,7 @@ class LightTheme {
     brightness: Brightness.light,
     iconTheme: IconThemeData(color: _primarySwatch),
     actionsIconTheme: IconThemeData(color: _primarySwatch),
-    textTheme: TextTheme(
+    textTheme: const TextTheme(
       subtitle1: TextStyle(
         color: Colors.black,
         fontSize: 16,

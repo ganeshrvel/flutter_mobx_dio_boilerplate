@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx_dio_boilerplate/common/di/di.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/router/router.gr.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/ui/store/login_store.dart';
@@ -6,7 +7,6 @@ import 'package:flutter_mobx_dio_boilerplate/common/helpers/navigation_helper.da
 import 'package:flutter_mobx_dio_boilerplate/widget_extends/sf_widget.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/splash/ui/widgets/splash_loading.dart';
 import 'package:flutter_mobx_dio_boilerplate/constants/strings.dart';
-import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key key}) : super(key: key);
@@ -16,15 +16,13 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends SfWidget<SplashScreen> {
-  LoginStore _loginStore;
+  LoginStore get _loginStore => getIt<LoginStore>();
 
   List<ReactionDisposer> _disposers;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
-    _loginStore ??= Provider.of<LoginStore>(context);
 
     _disposers ??= [
       reaction(

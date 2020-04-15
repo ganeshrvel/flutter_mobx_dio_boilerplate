@@ -10,7 +10,6 @@ import 'package:flutter_mobx_dio_boilerplate/features/app/ui/store/app_store.dar
 import 'package:flutter_mobx_dio_boilerplate/features/login/ui/store/login_store.dart';
 import 'package:flutter_mobx_dio_boilerplate/utils/alerts/alerts.dart';
 import 'package:flutter_mobx_dio_boilerplate/widget_extends/sf_widget.dart';
-import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);
@@ -22,24 +21,24 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends SfWidget {
   List<ReactionDisposer> _disposers;
 
-  Alerts _alerts;
+  Alerts get _alerts => getIt<Alerts>();
 
-  LoginStore _loginStore;
-  AppStore _appStore;
+  LoginStore get _loginStore => getIt<LoginStore>();
+
+  AppStore get _appStore => getIt<AppStore>();
 
   bool test = false;
 
   int _count = 0;
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
-    _alerts ??= getIt<Alerts>();
-
-    _loginStore ??= Provider.of<LoginStore>(context);
-
-    _appStore ??= Provider.of<AppStore>(context);
   }
 
   Widget buildLoginLogoutBtn(

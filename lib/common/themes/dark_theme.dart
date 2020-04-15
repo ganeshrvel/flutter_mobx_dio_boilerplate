@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class DarkTheme {
   static final ThemeData themeData = ThemeData(
+    // visualDensity: VisualDensity.adaptivePlatformDensity, enable this for macos
     brightness: Brightness.dark,
     primarySwatch: _primarySwatch,
     primaryColor: _primaryColor,
@@ -15,7 +16,7 @@ class DarkTheme {
   );
 
   static final MaterialColor _primarySwatch =
-      hexColor2MaterialColor(0xFF246BB3);
+  hexColor2MaterialColor(hexColor: 0xFF246BB3);
   static const Color _primaryColor = Color(0xFF246BB3);
   static const Color _hintColor = Color(0xffaaaaaa);
   static const Color _unselectedWidgetColor = Color(0xffcccccc);
@@ -27,8 +28,8 @@ class DarkTheme {
     brightness: Brightness.dark,
     iconTheme: IconThemeData(color: _primarySwatch),
     actionsIconTheme: IconThemeData(color: _primarySwatch),
-    textTheme: TextTheme(
-      subtitle1: TextStyle(
+    textTheme: const TextTheme(
+      subtitle2: TextStyle(
         color: Colors.white,
         fontSize: 16,
         fontWeight: FontWeight.w500,

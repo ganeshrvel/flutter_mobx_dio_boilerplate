@@ -23,10 +23,10 @@ class FlushbarHelper {
       flushbarPosition: FlushbarPosition.BOTTOM,
       flushbarStyle: FlushbarStyle.FLOATING,
       backgroundColor: _backgroundColor,
-      boxShadows: [
+      boxShadows: const [
         BoxShadow(
           color: Colors.black38,
-          offset: const Offset(0.0, 2.0),
+          offset: Offset(0.0, 2.0),
           blurRadius: 3.0,
         )
       ],

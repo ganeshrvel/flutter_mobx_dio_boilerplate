@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx_dio_boilerplate/common/di/di.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/l10n/l10n_helpers.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/models/route_redirect_model.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/data/models/post_login_request_model.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/ui/store/login_store.dart';
 import 'package:flutter_mobx_dio_boilerplate/widget_extends/sf_widget.dart';
-import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   final String redirectRouteName;
@@ -18,34 +18,30 @@ class LoginScreen extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _LoginScreenState(
-        redirectOnLogin: RouteRedirectModel(
-          routeName: redirectRouteName,
-          arguments: redirectRouteArgs,
-        ),
-      );
+  State<StatefulWidget> createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends SfWidget<LoginScreen> {
-  final RouteRedirectModel redirectOnLogin;
+  String get _redirectRouteName => widget.redirectRouteName;
 
-  _LoginScreenState({
-    this.redirectOnLogin,
-  });
+  Object get _redirectRouteArgs => widget.redirectRouteArgs;
 
-  LoginStore _loginStore;
+  LoginStore get _loginStore => getIt<LoginStore>();
 
   List<ReactionDisposer> _disposers;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
-    _loginStore ??= Provider.of<LoginStore>(context);
   }
 
   void doLogin(PostLoginRequestModel param) {
-    _loginStore.doLogin(context, param, redirectOnLogin: redirectOnLogin);
+    final _redirectOnLogin = RouteRedirectModel(
+      routeName: _redirectRouteName,
+      arguments: _redirectRouteArgs,
+    );
+
+    _loginStore.doLogin(context, param, redirectOnLogin: _redirectOnLogin);
   }
 
   @override

@@ -27,22 +27,19 @@ dependencies:
   # run below mentioned commands to generate launcher icons
   # flutter packages get
   # flutter packages pub run flutter_launcher_icons:main
-  flutter_launcher_icons: ^0.7.4
+  flutter_launcher_icons: ^0.7.5
 
   # MobX is a library for reactively managing the state of your applications. Use the power of
   # observables, actions, and reactions to supercharge your Dart and Flutter apps.
-  mobx: ^0.3.10
-  flutter_mobx: ^0.3.4+1
-
-  # An helper to easily exposes a value using InheritedWidget without having to write one.
-  provider: ^4.0.0
+  mobx: ^1.2.1+2
+  flutter_mobx: ^1.1.0+2
 
   # Service locator
-  get_it: ^4.0.0
-  injectable: ^0.3.0
+  get_it: ^4.0.4
+  injectable: ^1.0.4
 
   # data channel
-  data_channel: ^1.0.1
+  data_channel: ^1.0.4+1
 
   # API fetching
   dio: ^3.0.8
@@ -52,7 +49,7 @@ dependencies:
   data_connection_checker: ^0.3.4
 
   # Local cache
-  shared_preferences: ^0.5.6
+  shared_preferences: ^0.5.10
 
   meta: ^1.1.8
 
@@ -63,7 +60,7 @@ dependencies:
   auto_route: ^0.4.2
 
   # Json
-  json_serializable: ^3.2.5
+  json_serializable: ^3.4.1
   json_annotation: ^3.0.1
 
   # snackbar
@@ -78,23 +75,23 @@ dependencies:
 
   # video player
   chewie: ^0.9.10
-  video_player: ^0.10.8+1
+  video_player: ^0.10.12+2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   # Linting
-  lint: ^1.1.1
+  lint: ^1.2.0
 
   # Build runner
-  build_runner: ^1.7.2
+  build_runner: ^1.10.2
 
   # Service locator
-  injectable_generator: ^0.3.0
+  injectable_generator: ^1.0.4
 
   # MobX
-  mobx_codegen: ^0.3.10+1
+  mobx_codegen: ^1.1.0+1
 
   # Routing
   auto_route_generator: ^0.4.0

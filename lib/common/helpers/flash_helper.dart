@@ -282,53 +282,6 @@ class FlashHelper {
       },
     );
   }
-
-  Future<String> inputDialog(
-    BuildContext context, {
-    String title,
-    String message,
-    String defaultValue,
-    bool persistent = true,
-    WillPopCallback onWillPop,
-  }) {
-    final editingController = TextEditingController(text: defaultValue);
-
-    return showFlash<String>(
-      context: context,
-      persistent: persistent,
-      onWillPop: onWillPop,
-      builder: (context, controller) {
-        final theme = Theme.of(context);
-
-        return Flash<String>.bar(
-          controller: controller,
-          barrierColor: Colors.black54,
-          borderWidth: 3,
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(8.0)),
-          child: FlashBar(
-            title: title == null
-                ? null
-                : Text(title, style: const TextStyle(fontSize: 24.0)),
-            message: message == null ? null : Text(message),
-            userInputForm: Form(
-              child: TextFormField(
-                controller: editingController,
-                autofocus: true,
-              ),
-            ),
-            leftBarIndicatorColor: theme.primaryColor,
-            primaryAction: IconButton(
-              onPressed: () {
-                final message = editingController.text;
-                controller.dismiss(message);
-              },
-              icon: Icon(Icons.send, color: theme.colorScheme.secondary),
-            ),
-          ),
-        );
-      },
-    );
-  }
 }
 
 typedef ActionCallback = void Function(FlashController controller);

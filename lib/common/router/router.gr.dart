@@ -19,16 +19,22 @@ abstract class Routes {
   static const loginScreen = '/login-screen';
   static const splashScreen = '/splash-screen';
   static const profileScreen = '/profile-screen';
+  static const all = {
+    homeScreen,
+    loginScreen,
+    splashScreen,
+    profileScreen,
+  };
 }
 
 class Router extends RouterBase {
   @override
+  Set<String> get allRoutes => Routes.all;
+  @override
   Map<String, List<Type>> get guardedRoutes => {
         Routes.profileScreen: [RouterAuthGuard],
       };
-
-  //This will probably be removed in future versions
-  //you should call ExtendedNavigator.ofRouter<Router>() directly
+  @Deprecated('call ExtendedNavigator.ofRouter<Router>() directly')
   static ExtendedNavigatorState get navigator =>
       ExtendedNavigator.ofRouter<Router>();
 
@@ -42,7 +48,7 @@ class Router extends RouterBase {
         }
         final typedArgs = args as HomeScreenArguments ?? HomeScreenArguments();
         return PageRouteBuilder<dynamic>(
-          pageBuilder: (ctx, animation, secondaryAnimation) =>
+          pageBuilder: (context, animation, secondaryAnimation) =>
               HomeScreen(key: typedArgs.key),
           settings: settings,
         );
@@ -53,7 +59,7 @@ class Router extends RouterBase {
         final typedArgs =
             args as LoginScreenArguments ?? LoginScreenArguments();
         return PageRouteBuilder<dynamic>(
-          pageBuilder: (ctx, animation, secondaryAnimation) => LoginScreen(
+          pageBuilder: (context, animation, secondaryAnimation) => LoginScreen(
               key: typedArgs.key,
               redirectRouteName: typedArgs.redirectRouteName,
               redirectRouteArgs: typedArgs.redirectRouteArgs),
@@ -69,7 +75,7 @@ class Router extends RouterBase {
         final typedArgs =
             args as SplashScreenArguments ?? SplashScreenArguments();
         return PageRouteBuilder<dynamic>(
-          pageBuilder: (ctx, animation, secondaryAnimation) =>
+          pageBuilder: (context, animation, secondaryAnimation) =>
               SplashScreen(key: typedArgs.key),
           settings: settings,
         );
@@ -80,7 +86,7 @@ class Router extends RouterBase {
         final typedArgs =
             args as ProfileScreenArguments ?? ProfileScreenArguments();
         return PageRouteBuilder<dynamic>(
-          pageBuilder: (ctx, animation, secondaryAnimation) =>
+          pageBuilder: (context, animation, secondaryAnimation) =>
               ProfileScreen(key: typedArgs.key),
           settings: settings,
           transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
@@ -88,7 +94,7 @@ class Router extends RouterBase {
         );
       default:
         return PageRouteBuilder<dynamic>(
-          pageBuilder: (ctx, animation, secondaryAnimation) =>
+          pageBuilder: (context, animation, secondaryAnimation) =>
               PageNotFoundScreen(settings.name),
           settings: settings,
         );
@@ -96,9 +102,9 @@ class Router extends RouterBase {
   }
 }
 
-//**************************************************************************
+// *************************************************************************
 // Arguments holder classes
-//***************************************************************************
+// **************************************************************************
 
 //HomeScreen arguments holder class
 class HomeScreenArguments {
@@ -125,10 +131,4 @@ class SplashScreenArguments {
 class ProfileScreenArguments {
   final Key key;
   ProfileScreenArguments({this.key});
-}
-
-//PageNotFoundScreen arguments holder class
-class PageNotFoundScreenArguments {
-  final String routeName;
-  PageNotFoundScreenArguments({this.routeName});
 }
