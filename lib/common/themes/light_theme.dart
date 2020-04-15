@@ -15,7 +15,7 @@ class LightTheme {
   );
 
   static final MaterialColor _primarySwatch =
-      hexColor2MaterialColor(0xFF246BB3);
+      hexColor2MaterialColor(hexColor: 0xFF246BB3);
   static const Color _primaryColor = Color(0xFF246BB3);
   static const Color _hintColor = Color(0xffaaaaaa);
   static const Color _unselectedWidgetColor = Color(0xffcccccc);

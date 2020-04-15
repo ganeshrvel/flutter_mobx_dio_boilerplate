@@ -4,7 +4,7 @@ import 'package:flutter_mobx_dio_boilerplate/common/themes/dark_theme.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/themes/light_theme.dart';
 
 MaterialColor hexColor2MaterialColor({Color color, int hexColor}) {
-  assert(isNotNull(color) || isNotNull(hexColor));
+  assert(color != null || hexColor != null);
 
   final _color = color ?? Color(hexColor);
   final _hexColor = hexColor ?? colorToInt(colorToHex(_color));
@@ -65,7 +65,7 @@ String colorToHex(Color color, {bool leadingHashSign = false}) {
 int colorToInt(String hexColor) {
   var _hexColor = hexColor.toUpperCase().replaceAll('#', '');
 
-  if (hexColor.length == 6) {
+  if (_hexColor.length == 6) {
     _hexColor = 'FF$_hexColor';
   }
 
