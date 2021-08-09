@@ -36,18 +36,17 @@ class RootRouter extends _i1.RootStackRouter {
         }),
     HomeScreenRoute.name: (routeData) => _i1.AdaptivePage<dynamic>(
         routeData: routeData,
-        builder: (_) {
-          return const _i5.HomeScreen();
+        builder: (data) {
+          final args = data.argsAs<HomeScreenRouteArgs>(
+              orElse: () => const HomeScreenRouteArgs());
+          return _i5.HomeScreen(key: args.key, dummyValue: args.dummyValue);
         }),
     LoginScreenRoute.name: (routeData) => _i1.AdaptivePage<dynamic>(
         routeData: routeData,
         builder: (data) {
-          final args = data.argsAs<LoginScreenRouteArgs>(
-              orElse: () => const LoginScreenRouteArgs());
+          final args = data.argsAs<LoginScreenRouteArgs>();
           return _i6.LoginScreen(
-              key: args.key,
-              redirectRouteName: args.redirectRouteName,
-              redirectRouteArgs: args.redirectRouteArgs);
+              key: args.key, redirectOnLogin: args.redirectOnLogin);
         }),
     ProfileScreenRoute.name: (routeData) => _i1.AdaptivePage<dynamic>(
         routeData: routeData,
@@ -81,34 +80,40 @@ class SplashScreenRoute extends _i1.PageRouteInfo {
   static const String name = 'SplashScreenRoute';
 }
 
-class HomeScreenRoute extends _i1.PageRouteInfo {
-  const HomeScreenRoute() : super(name, path: '/homeScreen');
+class HomeScreenRoute extends _i1.PageRouteInfo<HomeScreenRouteArgs> {
+  HomeScreenRoute({_i2.Key? key, String? dummyValue})
+      : super(name,
+            path: '/homeScreen',
+            args: HomeScreenRouteArgs(key: key, dummyValue: dummyValue));
 
   static const String name = 'HomeScreenRoute';
 }
 
+class HomeScreenRouteArgs {
+  const HomeScreenRouteArgs({this.key, this.dummyValue});
+
+  final _i2.Key? key;
+
+  final String? dummyValue;
+}
+
 class LoginScreenRoute extends _i1.PageRouteInfo<LoginScreenRouteArgs> {
   LoginScreenRoute(
-      {_i2.Key? key, String? redirectRouteName, Object? redirectRouteArgs})
+      {_i2.Key? key, required _i1.PageRouteInfo<dynamic>? redirectOnLogin})
       : super(name,
             path: '/loginScreen',
             args: LoginScreenRouteArgs(
-                key: key,
-                redirectRouteName: redirectRouteName,
-                redirectRouteArgs: redirectRouteArgs));
+                key: key, redirectOnLogin: redirectOnLogin));
 
   static const String name = 'LoginScreenRoute';
 }
 
 class LoginScreenRouteArgs {
-  const LoginScreenRouteArgs(
-      {this.key, this.redirectRouteName, this.redirectRouteArgs});
+  const LoginScreenRouteArgs({this.key, required this.redirectOnLogin});
 
   final _i2.Key? key;
 
-  final String? redirectRouteName;
-
-  final Object? redirectRouteArgs;
+  final _i1.PageRouteInfo<dynamic>? redirectOnLogin;
 }
 
 class ProfileScreenRoute extends _i1.PageRouteInfo {

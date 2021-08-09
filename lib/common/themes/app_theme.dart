@@ -115,10 +115,8 @@ class AppTheme {
       brightness: mode == ThemeMode.light ? Brightness.light : Brightness.dark,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       iconTheme: _originalIconTheme,
-      primarySwatch: _primarySwatch,
       buttonTheme: _buttonTheme,
       primaryColor: palette.primaryColor,
-      accentColor: palette.accentColor,
       indicatorColor: palette.accentColor,
       scaffoldBackgroundColor: palette.backgroundColor,
       backgroundColor: palette.backgroundColor,
@@ -159,6 +157,11 @@ class AppTheme {
         overline: _originalBodyText1.copyWith(),
         headline4: _originalBodyText1.copyWith(),
         headline3: _originalBodyText1.copyWith(),
+      ),
+      colorScheme: ColorScheme.fromSwatch(
+        primarySwatch: _primarySwatch,
+      ).copyWith(
+        secondary: palette.accentColor,
       ),
     );
   }

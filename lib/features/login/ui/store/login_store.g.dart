@@ -58,7 +58,7 @@ mixin _$LoginStore on _LoginStoreBase, Store {
 
   @override
   Future<void> doLogin(BuildContext context, PostLoginRequestModel params,
-      {RouteRedirectModel? redirectOnLogin}) {
+      {PageRouteInfo<dynamic>? redirectOnLogin}) {
     return _$doLoginAsyncAction.run(
         () => super.doLogin(context, params, redirectOnLogin: redirectOnLogin));
   }

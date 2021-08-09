@@ -1,9 +1,9 @@
-import 'package:injectable/injectable.dart';
-import 'package:flutter_mobx_dio_boilerplate/common/api_client/api_client.dart';
 import 'package:data_channel/data_channel.dart';
-import 'package:flutter_mobx_dio_boilerplate/features/login/data/models/user_model.dart';
+import 'package:flutter_mobx_dio_boilerplate/common/api_client/api_client.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/data/models/post_login_request_model.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/data/models/post_login_response_model.dart';
+import 'package:flutter_mobx_dio_boilerplate/features/login/data/models/user_model.dart';
+import 'package:injectable/injectable.dart';
 
 @LazySingleton()
 class LoginRemoteDataSource {

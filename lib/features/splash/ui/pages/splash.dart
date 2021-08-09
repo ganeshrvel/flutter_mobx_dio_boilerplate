@@ -29,7 +29,7 @@ class _SplashScreenState extends SfWidget<SplashScreen> {
       reaction(
         (_) => _loginStore.isLoggedIn,
         (bool? isLoggedIn) {
-          if (getCurrentScreen(context) != Routes.splashScreen) {
+          if (getCurrentScreen(context) != SplashScreenRoute.name) {
             return;
           }
 
@@ -47,7 +47,7 @@ class _SplashScreenState extends SfWidget<SplashScreen> {
   }
 
   void handleIsLoggedIn({bool? isLoggedIn}) {
-    navigateToHome(context);
+    navigateToHomeScreen(routeArgs: null);
   }
 
   Widget buildFirstScreen(BuildContext context) {

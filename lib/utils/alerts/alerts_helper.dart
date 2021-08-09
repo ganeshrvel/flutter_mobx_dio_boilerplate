@@ -68,7 +68,7 @@ class AlertsHelper {
     if (exception is BadNetworkException) {
       _body = Errors.BAD_NETWORK_MESSAGE;
     } else if (exception is UnauthenticatedException) {
-      navigateToLogin(context);
+      navigateToLoginScreen(context: context, args: null);
 
       _body = Errors.INVALID_UNAUTHENTICATED_MESSAGE;
     } else if (exception is ApiException) {

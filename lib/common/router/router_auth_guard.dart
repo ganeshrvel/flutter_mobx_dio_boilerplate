@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/di/di.dart';
-import 'package:flutter_mobx_dio_boilerplate/common/router/router.gr.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/data/controllers/login_controller.dart';
 
 class RouterAuthGuard extends AutoRouteGuard {

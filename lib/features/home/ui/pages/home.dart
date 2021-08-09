@@ -13,7 +13,9 @@ import 'package:flutter_mobx_dio_boilerplate/widget_extends/sf_widget.dart';
 import 'package:mobx/mobx.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  final String? dummyValue;
+
+  const HomeScreen({Key? key, this.dummyValue}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _HomeScreenState();
@@ -57,7 +59,7 @@ class _HomeScreenState extends SfWidget {
 
     return ElevatedButton(
       onPressed: () {
-        navigateToLogin(context);
+        navigateToLoginScreen(context: context, args: null);
       },
       child: Text(ln(context, 'home_login_btn_text')),
     );
@@ -100,13 +102,19 @@ class _HomeScreenState extends SfWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                navigateToRoute(context, Routes.profileScreen);
+                navigateToRoute(
+                  context: context,
+                  route: const ProfileScreenRoute(),
+                );
               },
               child: Text(ln(context, 'home_open_profile_btn_text')),
             ),
             ElevatedButton(
               onPressed: () {
-                navigateToRoute(context, 'unknown');
+                navigateToRoute(
+                  context: context,
+                  route: PageNotFoundScreenRoute(routeName: ''),
+                );
               },
               child: Text(ln(context, 'home_open_404_btn_text')),
             ),

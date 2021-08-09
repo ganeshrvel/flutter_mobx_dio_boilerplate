@@ -1,7 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/di/di.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/l10n/l10n_helpers.dart';
-import 'package:flutter_mobx_dio_boilerplate/common/models/route_redirect_model.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/data/models/post_login_request_model.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/ui/store/login_store.dart';
 import 'package:flutter_mobx_dio_boilerplate/utils/common/store_helper.dart';
@@ -9,13 +9,11 @@ import 'package:flutter_mobx_dio_boilerplate/widget_extends/sf_widget.dart';
 import 'package:mobx/mobx.dart';
 
 class LoginScreen extends StatefulWidget {
-  final String redirectRouteName;
-  final Object redirectRouteArgs;
+  final PageRouteInfo? redirectOnLogin;
 
   const LoginScreen({
     Key? key,
-    required this.redirectRouteName,
-    required this.redirectRouteArgs,
+    required this.redirectOnLogin,
   }) : super(key: key);
 
   @override
@@ -23,9 +21,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends SfWidget<LoginScreen> {
-  String get _redirectRouteName => widget.redirectRouteName;
-
-  Object get _redirectRouteArgs => widget.redirectRouteArgs;
+  PageRouteInfo? get _redirectOnLogin => widget.redirectOnLogin;
 
   LoginStore get _loginStore => getIt<LoginStore>();
 
@@ -37,11 +33,6 @@ class _LoginScreenState extends SfWidget<LoginScreen> {
   }
 
   void doLogin(PostLoginRequestModel param) {
-    final _redirectOnLogin = RouteRedirectModel(
-      routeName: _redirectRouteName,
-      arguments: _redirectRouteArgs,
-    );
-
     _loginStore.doLogin(context, param, redirectOnLogin: _redirectOnLogin);
   }
 

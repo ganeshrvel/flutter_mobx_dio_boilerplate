@@ -1,29 +1,32 @@
 #!/usr/bin/env bash
 
+dartInstallationPath=$(which dart)
+echo "found dart installed in $dartInstallationPath"
+echo ""
+
 ##### Flutter formatter
 printf "\n"
 printf "\e[33;1m%s\e[0m\n" 'Running the Dart formatter'
-/usr/local/bin/dartfmt -w ./lib/
+"$dartInstallationPath" format ./lib/
 
 
 ##### Flutter analyzer
 printf "\n"
 printf "\e[33;1m%s\e[0m\n" 'Running the Dart analyzer'
-/usr/local/bin/dartanalyzer --fatal-infos --fatal-warnings ./lib/
+"$dartInstallationPath" analyze ./lib/
 if [ $? -ne 0 ]; then
   printf "\e[31;1m%s\e[0m\n" 'Dart analyzer error'
   exit 1
 fi
 
-
 ##### Unit tests
-# printf "\n"
-# printf "\e[33;1m%s\e[0m\n" 'Running unit tests'
-# /path/to/flutter/bin/flutter test
-# if [ $? -ne 0 ]; then
-#   printf "\e[31;1m%s\e[0m\n" 'Unit tests error'
-#   exit 1
-# fi
+#printf "\n"
+#printf "\e[33;1m%s\e[0m\n" 'Running unit tests'
+#flutter test
+#if [ $? -ne 0 ]; then
+#  printf "\e[31;1m%s\e[0m\n" 'Unit tests error'
+#  exit 1
+#fi
 #
-# printf "\e[33;1m%s\e[0m\n" 'Finished running unit tests'
-
+#printf "\e[33;1m%s\e[0m\n" 'Finished running unit tests'
+#

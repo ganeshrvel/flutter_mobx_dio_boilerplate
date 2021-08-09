@@ -1,10 +1,10 @@
 import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/enums/state_status.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/exceptions/exceptions.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/helpers/navigation_helper.dart';
-import 'package:flutter_mobx_dio_boilerplate/common/models/route_redirect_model.dart';
 import 'package:flutter_mobx_dio_boilerplate/constants/errors.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/data/controllers/login_controller.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/data/models/post_login_request_model.dart';
@@ -37,7 +37,7 @@ abstract class _LoginStoreBase with Store {
   Future<void> doLogin(
     BuildContext context,
     PostLoginRequestModel params, {
-    RouteRedirectModel? redirectOnLogin,
+    PageRouteInfo? redirectOnLogin,
   }) async {
     isLoggedInStatus = StateStatus.LOADING;
     final loginData = await loginController.postLogin(params);
@@ -62,14 +62,10 @@ abstract class _LoginStoreBase with Store {
           return;
         }
 
-        if (redirectOnLogin?.routeName != null) {
-          navigateToRouteAndReplace(
-            context,
-            redirectOnLogin.routeName,
-            routeArgs: redirectOnLogin.arguments,
-          );
+        if (redirectOnLogin != null) {
+          navigateToRouteAndReplace(redirectOnLogin);
         } else {
-          popCurrentRoute(context);
+          popCurrentRoute();
 
           alerts.setAlert(
             context,
@@ -102,7 +98,7 @@ abstract class _LoginStoreBase with Store {
       },
       onData: (data) {
         if (data!.isAuthenticated) {
-          canPopCurrentRoute(context);
+          canPopCurrentRoute();
 
           isLoggedIn = true;
 
@@ -133,7 +129,7 @@ abstract class _LoginStoreBase with Store {
       },
       onData: (data) {
         if (_redirectToHome) {
-          navigateToHome(context);
+          navigateToHomeScreen(routeArgs: null);
         }
 
         isLoggedIn = false;
