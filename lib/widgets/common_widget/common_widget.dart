@@ -4,7 +4,7 @@ class CommonWidget extends StatelessWidget {
   final Widget child;
 
   const CommonWidget({
-    @required this.child,
+    required this.child,
   });
 
   @override

@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 
-@lazySingleton
+@LazySingleton()
 class PushesService {
   PushesService();
 

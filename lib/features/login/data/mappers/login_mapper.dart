@@ -2,10 +2,6 @@ import 'dart:convert';
 
 class LoginModelMapper {
   static Map<String, dynamic> _parseJwt(String token) {
-    if (token == null) {
-      return {};
-    }
-
     final parts = token.split('.');
 
     if (parts.length != 3) {
@@ -34,6 +30,6 @@ class LoginModelMapper {
       throw Exception('Invalid payload.');
     }
 
-    return payloadMap as Map<String, dynamic>;
+    return payloadMap;
   }
 }

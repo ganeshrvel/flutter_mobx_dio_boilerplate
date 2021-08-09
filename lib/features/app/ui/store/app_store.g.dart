@@ -9,7 +9,7 @@ part of 'app_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$AppStore on _AppStoreBase, Store {
-  Computed<bool> _$isAppSettingsLoadedComputed;
+  Computed<bool>? _$isAppSettingsLoadedComputed;
 
   @override
   bool get isAppSettingsLoaded => (_$isAppSettingsLoadedComputed ??=
@@ -20,13 +20,13 @@ mixin _$AppStore on _AppStoreBase, Store {
   final _$languageAtom = Atom(name: '_AppStoreBase.language');
 
   @override
-  LanguageModel get language {
+  LanguageModel? get language {
     _$languageAtom.reportRead();
     return super.language;
   }
 
   @override
-  set language(LanguageModel value) {
+  set language(LanguageModel? value) {
     _$languageAtom.reportWrite(value, super.language, () {
       super.language = value;
     });
@@ -35,13 +35,13 @@ mixin _$AppStore on _AppStoreBase, Store {
   final _$themeAtom = Atom(name: '_AppStoreBase.theme');
 
   @override
-  ThemeModel get theme {
+  ThemeModel? get theme {
     _$themeAtom.reportRead();
     return super.theme;
   }
 
   @override
-  set theme(ThemeModel value) {
+  set theme(ThemeModel? value) {
     _$themeAtom.reportWrite(value, super.theme, () {
       super.theme = value;
     });

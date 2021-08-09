@@ -1,4 +1,4 @@
-# Flutter Mobx Dio Boilerplate
+# Flutter Mobx Dio Boilerplate [null safe]
 
 - Author: [Ganesh Rathinavel](https://www.linkedin.com/in/ganeshrvel "Ganesh Rathinavel")
 - License: [MIT](https://github.com/ganeshrvel/flutter_mobx_dio_boilerplate/blob/master/LICENSE "MIT")
@@ -11,6 +11,7 @@
 ###### Flutter is an excellent framework for building cross-platform native applications. But there are only a handful of frameworks available online to get going and I found most of them lack advanced features.
 
 ### Features
+- Null Safe, supports Flutter 2.0!!
 - Mobx for state management (https://pub.dev/packages/mobx)
 - Dio for fetching APIs (https://pub.dev/packages/dio)
 - GetIt/Injectable for Dependecy Injection (DI) (https://pub.dev/packages/get_It and https://pub.dev/packages/injectable)
@@ -25,7 +26,7 @@
 
 ### Installation
 ```shell
-$ git clone --depth 1 --single-branch --branch master https://github.com/ganeshrvel/flutter_mobx_dio_boilerplate.git
+$ git clone https://github.com/ganeshrvel/flutter_mobx_dio_boilerplate.git
 
 $ cd flutter_mobx_dio_boilerplate
 ```
@@ -260,6 +261,15 @@ It is not a very ideal solution to handle exceptions using try and catch at ever
 **data_channel (DC)** is a simple dart utility for handling exceptions and data routing.
 
 Refer to https://pub.dev/packages/data_channel for more details.
+
+### Rules
+Rules - Powerful and feature-rich validation library for both Dart and Flutter.
+
+Refer to https://pub.dev/packages/rules for more details.
+
+### Non-Null safe version
+Find the non-null safe version from here: https://github.com/ganeshrvel/flutter_mobx_dio_boilerplate/tree/9623e9a367cae5380e3a84840b46263262f166af
+
 
 ### IDE
 **Hide Generated Files**

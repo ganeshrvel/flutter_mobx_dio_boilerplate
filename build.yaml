@@ -1,0 +1,19 @@
+builders:
+  auto_route_generator|autoRouteGenerator:
+    import: "package:auto_route_generator/builder.dart"
+    builder_factories: [ "autoRouteGenerator" ]
+    build_extensions: { '.dart': [ '.gr.dart' ] }
+
+
+targets:
+  $default:
+    auto_apply_builders: true
+    builders:
+      auto_route_generator|autoRouteGenerator:
+        enabled: false
+
+  run_auto_route_generator:
+    auto_apply_builders: false
+    builders:
+      auto_route_generator|autoRouteGenerator:
+        enabled: true

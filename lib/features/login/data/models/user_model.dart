@@ -1,13 +1,12 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:meta/meta.dart';
 
 part 'user_model.g.dart';
 
-@JsonSerializable(nullable: true)
+@JsonSerializable()
 class UserModel extends Equatable {
   @JsonKey(name: 'errorMessage')
-  final String errorMessage;
+  final String? errorMessage;
 
   final int id;
 
@@ -16,10 +15,10 @@ class UserModel extends Equatable {
   final String username;
 
   const UserModel({
-    @required this.id,
-    @required this.email,
-    @required this.username,
-    @required this.errorMessage,
+    required this.id,
+    required this.email,
+    required this.username,
+    required this.errorMessage,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
@@ -28,5 +27,5 @@ class UserModel extends Equatable {
   Map<String, dynamic> toJson() => _$UserModelToJson(this);
 
   @override
-  List<Object> get props => [errorMessage, id, email, username];
+  List<Object> get props => [errorMessage ?? '', id, email, username];
 }

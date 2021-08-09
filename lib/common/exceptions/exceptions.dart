@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 class CacheException implements Exception {}
 
 class ApiException implements Exception {}
@@ -11,7 +9,7 @@ class InternalServerException implements Exception {}
 class UnauthenticatedException implements Exception {}
 
 class ApiErrorMessageException implements Exception {
-  final String errorMessage;
+  final String? errorMessage;
 
-  ApiErrorMessageException({@required this.errorMessage});
+  ApiErrorMessageException({required this.errorMessage});
 }

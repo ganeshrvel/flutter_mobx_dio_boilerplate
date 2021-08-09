@@ -1,31 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:mobx/mobx.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/di/di.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/helpers/navigation_helper.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/l10n/l10n_helpers.dart';
-import 'package:flutter_mobx_dio_boilerplate/common/models/theme_model.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/router/router.gr.dart';
+import 'package:flutter_mobx_dio_boilerplate/features/app/data/models/theme_model.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/app/ui/store/app_store.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/ui/store/login_store.dart';
 import 'package:flutter_mobx_dio_boilerplate/utils/alerts/alerts.dart';
+import 'package:flutter_mobx_dio_boilerplate/utils/common/store_helper.dart';
 import 'package:flutter_mobx_dio_boilerplate/widget_extends/sf_widget.dart';
+import 'package:mobx/mobx.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key key}) : super(key: key);
+  final String? dummyValue;
+
+  const HomeScreen({Key? key, this.dummyValue}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends SfWidget {
-  List<ReactionDisposer> _disposers;
+  late final List<ReactionDisposer> _disposers;
 
-  Alerts get _alerts => getIt<Alerts>();
+  final _alerts = getIt<Alerts>();
 
-  LoginStore get _loginStore => getIt<LoginStore>();
+  final _loginStore = getIt<LoginStore>();
 
-  AppStore get _appStore => getIt<AppStore>();
+  final _appStore = getIt<AppStore>();
 
   bool test = false;
 
@@ -33,6 +36,8 @@ class _HomeScreenState extends SfWidget {
 
   @override
   void initState() {
+    _disposers = [];
+
     super.initState();
   }
 
@@ -43,10 +48,10 @@ class _HomeScreenState extends SfWidget {
 
   Widget buildLoginLogoutBtn(
     BuildContext context, {
-    @required bool isLoggedIn,
+    required bool isLoggedIn,
   }) {
     if (isLoggedIn) {
-      return RaisedButton(
+      return ElevatedButton(
         onPressed: () {
           _loginStore.logout(context);
         },
@@ -54,9 +59,9 @@ class _HomeScreenState extends SfWidget {
       );
     }
 
-    return RaisedButton(
+    return ElevatedButton(
       onPressed: () {
-        navigateToLogin(context);
+        navigateToLoginScreen(context: context, args: null);
       },
       child: Text(ln(context, 'home_login_btn_text')),
     );
@@ -64,11 +69,7 @@ class _HomeScreenState extends SfWidget {
 
   @override
   void dispose() {
-    if (_disposers != null) {
-      _disposers.map((a) {
-        a();
-      });
-    }
+    disposeStore(_disposers);
 
     super.dispose();
   }
@@ -95,21 +96,27 @@ class _HomeScreenState extends SfWidget {
 
               return buildLoginLogoutBtn(context, isLoggedIn: isLoggedIn);
             }),
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
                 _alerts.setAlert(context, 'An alert ${_count++}');
               },
               child: Text(ln(context, 'home_throw_alert_btn_text')),
             ),
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
-                navigateToRoute(context, Routes.profileScreen);
+                navigateToRoute(
+                  context: context,
+                  route: const ProfileScreenRoute(),
+                );
               },
               child: Text(ln(context, 'home_open_profile_btn_text')),
             ),
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
-                navigateToRoute(context, 'unknown');
+                navigateToRoute(
+                  context: context,
+                  route: PageNotFoundScreenRoute(routeName: ''),
+                );
               },
               child: Text(ln(context, 'home_open_404_btn_text')),
             ),
@@ -117,7 +124,7 @@ class _HomeScreenState extends SfWidget {
               children: <Widget>[
                 Text(ln(context, 'home_toggle_language_btn_text')),
                 Observer(builder: (_) {
-                  final localeValue = _appStore.language.locale;
+                  final localeValue = _appStore.language!.locale;
 
                   return Switch(
                     value: localeValue == 'en',
@@ -142,7 +149,7 @@ class _HomeScreenState extends SfWidget {
               children: <Widget>[
                 Text(ln(context, 'home_toggle_theme_btn_text')),
                 Observer(builder: (_) {
-                  final themeValue = _appStore.theme.mode;
+                  final themeValue = _appStore.theme!.mode;
 
                   return Switch(
                     value: themeValue == ThemeMode.light,

@@ -1,16 +1,16 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
-import 'package:injectable/injectable.dart';
-import 'package:mobx/mobx.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/exceptions/exceptions.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/l10n/l10n_helpers.dart';
-import 'package:flutter_mobx_dio_boilerplate/common/models/language_model.dart';
-import 'package:flutter_mobx_dio_boilerplate/common/models/theme_model.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/themes/theme_helper.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/app/data/controllers/app_controller.dart';
+import 'package:flutter_mobx_dio_boilerplate/features/app/data/models/language_model.dart';
+import 'package:flutter_mobx_dio_boilerplate/features/app/data/models/theme_model.dart';
 import 'package:flutter_mobx_dio_boilerplate/utils/alerts/alerts.dart';
 import 'package:flutter_mobx_dio_boilerplate/utils/log/log.dart';
+import 'package:injectable/injectable.dart';
+import 'package:mobx/mobx.dart';
 
 part 'app_store.g.dart';
 
@@ -19,19 +19,8 @@ enum AppSettingsTypeEnum {
   THEME,
 }
 
-@lazySingleton
-class AppStore extends _AppStoreBase with _$AppStore {
-  @override
-  final AppController appController;
-
-  @override
-  final Alerts alerts;
-
-  AppStore(
-    this.appController,
-    this.alerts,
-  ) : super(appController, alerts);
-}
+@LazySingleton()
+class AppStore = _AppStoreBase with _$AppStore;
 
 abstract class _AppStoreBase with Store {
   final AppController appController;
@@ -43,10 +32,10 @@ abstract class _AppStoreBase with Store {
   }
 
   @observable
-  LanguageModel language;
+  LanguageModel? language;
 
   @observable
-  ThemeModel theme;
+  ThemeModel? theme;
 
   @computed
   bool get isAppSettingsLoaded {

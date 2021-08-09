@@ -3,7 +3,7 @@ import 'package:logger/logger.dart';
 
 @module
 abstract class LoggerDi {
-  @lazySingleton
+  @LazySingleton()
   Logger get logger => Logger(
         printer: PrettyPrinter(),
       );

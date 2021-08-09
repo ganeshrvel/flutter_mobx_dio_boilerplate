@@ -1,18 +1,18 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_mobx_dio_boilerplate/utils/common/functs.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:meta/meta.dart';
 
 part 'authentication_model.g.dart';
 
-@JsonSerializable(nullable: false)
+@JsonSerializable()
 class AuthenticationModel extends Equatable {
-  final String tokenId;
+  final String? tokenId;
 
   const AuthenticationModel({
-    @required this.tokenId,
+    required this.tokenId,
   });
 
-  bool get isAuthenticated => tokenId != null && tokenId.isNotEmpty;
+  bool get isAuthenticated => tokenId != null && isNotNullOrEmpty(tokenId);
 
   factory AuthenticationModel.fromJson(Map<String, dynamic> json) =>
       _$AuthenticationModelFromJson(json);
@@ -20,5 +20,5 @@ class AuthenticationModel extends Equatable {
   Map<String, dynamic> toJson() => _$AuthenticationModelToJson(this);
 
   @override
-  List<Object> get props => [tokenId];
+  List<Object> get props => [tokenId ?? ''];
 }

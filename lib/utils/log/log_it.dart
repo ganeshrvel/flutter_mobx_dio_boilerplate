@@ -1,8 +1,8 @@
+import 'package:flutter_mobx_dio_boilerplate/constants/env.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
-import 'package:flutter_mobx_dio_boilerplate/constants/env.dart';
 
-@lazySingleton
+@LazySingleton()
 class LogIt {
   final Logger logger;
 
@@ -13,7 +13,7 @@ class LogIt {
     dynamic message, {
     dynamic error,
     bool showInProd = false,
-    StackTrace stackTrace,
+    StackTrace? stackTrace,
   }) {
     if (Env.IS_RELEASE && !showInProd) {
       return;
@@ -27,7 +27,7 @@ class LogIt {
     dynamic message, {
     dynamic error,
     bool showInProd = false,
-    StackTrace stackTrace,
+    StackTrace? stackTrace,
   }) {
     if (Env.IS_RELEASE && !showInProd) {
       return;
@@ -41,7 +41,7 @@ class LogIt {
     dynamic message, {
     dynamic error,
     bool showInProd = false,
-    StackTrace stackTrace,
+    StackTrace? stackTrace,
   }) {
     if (Env.IS_RELEASE && !showInProd) {
       return;
@@ -55,7 +55,7 @@ class LogIt {
     dynamic message, {
     dynamic error,
     bool showInProd = false,
-    StackTrace stackTrace,
+    StackTrace? stackTrace,
   }) {
     if (Env.IS_RELEASE && !showInProd) {
       return;
@@ -69,7 +69,7 @@ class LogIt {
     dynamic message, {
     dynamic error,
     bool showInProd = false,
-    StackTrace stackTrace,
+    StackTrace? stackTrace,
   }) {
     if (Env.IS_RELEASE && !showInProd) {
       return;
@@ -83,7 +83,7 @@ class LogIt {
     dynamic message, {
     dynamic error,
     bool showInProd = false,
-    StackTrace stackTrace,
+    StackTrace? stackTrace,
   }) {
     if (Env.IS_RELEASE && !showInProd) {
       return;

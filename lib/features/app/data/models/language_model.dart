@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:meta/meta.dart';
 
 part 'language_model.g.dart';
 
@@ -16,12 +15,12 @@ class LanguageModel extends Equatable {
   final String language;
 
   /// map of keys used based on industry type (service worker, route etc)
-  final Map<String, String> dictionary;
+  final Map<String, String>? dictionary;
 
   const LanguageModel({
-    @required this.countryCode,
-    @required this.locale,
-    @required this.language,
+    required this.countryCode,
+    required this.locale,
+    required this.language,
     this.dictionary,
   });
 
@@ -31,5 +30,5 @@ class LanguageModel extends Equatable {
   Map<String, dynamic> toJson() => _$LanguageModelToJson(this);
 
   @override
-  List<Object> get props => [countryCode, locale, language, dictionary];
+  List<Object> get props => [countryCode, locale, language, dictionary ?? {}];
 }

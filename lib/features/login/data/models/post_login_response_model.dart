@@ -1,19 +1,18 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:meta/meta.dart';
 
 part 'post_login_response_model.g.dart';
 
-@JsonSerializable(nullable: true)
+@JsonSerializable()
 class PostLoginResponseModel extends Equatable {
   @JsonKey(name: 'token_id')
-  final String tokenId;
+  final String? tokenId;
 
   @JsonKey(name: 'error_message')
-  final String errorMessage;
+  final String? errorMessage;
 
   const PostLoginResponseModel({
-    @required this.tokenId,
+    required this.tokenId,
     this.errorMessage,
   });
 
@@ -25,5 +24,5 @@ class PostLoginResponseModel extends Equatable {
   Map<String, dynamic> toJson() => _$PostLoginResponseModelToJson(this);
 
   @override
-  List<Object> get props => [tokenId, errorMessage];
+  List<Object> get props => [tokenId ?? '', errorMessage ?? ''];
 }

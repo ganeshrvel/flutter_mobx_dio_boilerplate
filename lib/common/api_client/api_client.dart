@@ -1,33 +1,30 @@
 import 'package:dio/dio.dart';
-import 'package:injectable/injectable.dart';
-import 'package:flutter_mobx_dio_boilerplate/common/api_client/api_errors/api_error_message_error.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/api_client/api_errors/bad_network_api_error.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/api_client/api_errors/internal_server_api_error.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/api_client/api_errors/unauthorized_api_error.dart';
-import 'package:flutter_mobx_dio_boilerplate/common/api_client/interceptors/api_error_message_interceptor.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/api_client/interceptors/auth_interceptor.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/api_client/interceptors/bad_network_error_interceptor.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/api_client/interceptors/internal_server_error_interceptor.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/api_client/interceptors/unauthorized_interceptor.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/exceptions/exceptions.dart';
 import 'package:flutter_mobx_dio_boilerplate/constants/env.dart';
+import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-@lazySingleton
+@LazySingleton()
 class ApiClient {
   final Dio dio;
 
   ApiClient(this.dio) {
-    dio.options.baseUrl = Env.data.apiBaseUrl;
+    dio.options.baseUrl = env.config.apiBaseUrl;
     dio.options.connectTimeout = const Duration(minutes: 3).inMilliseconds;
     dio.options.receiveTimeout = const Duration(minutes: 3).inMilliseconds;
     dio.interceptors.add(BadNetworkErrorInterceptor());
     dio.interceptors.add(InternalServerErrorInterceptor());
     dio.interceptors.add(AuthInterceptor());
     dio.interceptors.add(UnauthorizedInterceptor());
-    dio.interceptors.add(ApiErrorMessageInterceptor());
 
-    if (Env.data.debugApiClient) {
+    if (env.config.debugApiClient) {
       dio.interceptors.add(PrettyDioLogger(
         requestHeader: true,
         requestBody: true,
@@ -51,8 +48,6 @@ class ApiClient {
       throw InternalServerException();
     } on UnauthorizedApiError {
       throw UnauthenticatedException();
-    } on ApiErrorMessageError catch (e) {
-      throw ApiErrorMessageException(errorMessage: e.errorMessage);
     } on DioError {
       throw ApiException();
     }
@@ -67,8 +62,6 @@ class ApiClient {
       throw InternalServerException();
     } on UnauthorizedApiError {
       throw UnauthenticatedException();
-    } on ApiErrorMessageError catch (e) {
-      throw ApiErrorMessageException(errorMessage: e.errorMessage);
     } on DioError {
       throw ApiException();
     }
@@ -83,8 +76,6 @@ class ApiClient {
       throw InternalServerException();
     } on UnauthorizedApiError {
       throw UnauthenticatedException();
-    } on ApiErrorMessageError catch (e) {
-      throw ApiErrorMessageException(errorMessage: e.errorMessage);
     } on DioError {
       throw ApiException();
     }
@@ -99,8 +90,6 @@ class ApiClient {
       throw InternalServerException();
     } on UnauthorizedApiError {
       throw UnauthenticatedException();
-    } on ApiErrorMessageError catch (e) {
-      throw ApiErrorMessageException(errorMessage: e.errorMessage);
     } on DioError {
       throw ApiException();
     }

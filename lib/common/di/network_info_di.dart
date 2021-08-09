@@ -3,6 +3,6 @@ import 'package:injectable/injectable.dart';
 
 @module
 abstract class NetworkInfoDi {
-  @lazySingleton
+  @LazySingleton()
   DataConnectionChecker get dataConnectionChecker => DataConnectionChecker();
 }

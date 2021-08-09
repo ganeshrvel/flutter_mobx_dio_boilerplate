@@ -7,12 +7,11 @@ part of 'post_login_request_model.dart';
 // **************************************************************************
 
 PostLoginRequestModel _$PostLoginRequestModelFromJson(
-    Map<String, dynamic> json) {
-  return PostLoginRequestModel(
-    username: json['username'] as String,
-    password: json['password'] as String,
-  );
-}
+        Map<String, dynamic> json) =>
+    PostLoginRequestModel(
+      username: json['username'] as String,
+      password: json['password'] as String,
+    );
 
 Map<String, dynamic> _$PostLoginRequestModelToJson(
         PostLoginRequestModel instance) =>

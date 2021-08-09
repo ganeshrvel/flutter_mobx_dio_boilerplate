@@ -4,8 +4,8 @@ class AppIconWidget extends StatelessWidget {
   final String image;
 
   const AppIconWidget({
-    Key key,
-    this.image,
+    Key? key,
+    required this.image,
   }) : super(key: key);
 
   @override

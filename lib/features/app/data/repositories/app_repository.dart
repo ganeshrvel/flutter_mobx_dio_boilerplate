@@ -1,10 +1,10 @@
-import 'package:injectable/injectable.dart';
 import 'package:data_channel/data_channel.dart';
-import 'package:flutter_mobx_dio_boilerplate/common/models/language_model.dart';
-import 'package:flutter_mobx_dio_boilerplate/common/models/theme_model.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/app/data/data_sources/app_local_data_source.dart';
+import 'package:flutter_mobx_dio_boilerplate/features/app/data/models/language_model.dart';
+import 'package:flutter_mobx_dio_boilerplate/features/app/data/models/theme_model.dart';
+import 'package:injectable/injectable.dart';
 
-@lazySingleton
+@LazySingleton()
 class AppRepository {
   final AppLocalDataSource _appLocalDataSource;
 
@@ -12,7 +12,7 @@ class AppRepository {
     this._appLocalDataSource,
   );
 
-  Future<DC<Exception, LanguageModel>> getAppLanguageData() async {
+  Future<DC<Exception, LanguageModel?>> getAppLanguageData() async {
     return _appLocalDataSource.getAppLanguageData();
   }
 
@@ -26,7 +26,7 @@ class AppRepository {
     return _appLocalDataSource.deleteAppLanguageCache();
   }
 
-  Future<DC<Exception, ThemeModel>> getAppThemeData() async {
+  Future<DC<Exception, ThemeModel?>> getAppThemeData() async {
     return _appLocalDataSource.getAppThemeData();
   }
 
