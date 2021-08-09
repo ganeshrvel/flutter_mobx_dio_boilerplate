@@ -3,7 +3,7 @@ import 'dart:isolate';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/di/di.dart' show getItInit;
-import 'package:flutter_mobx_dio_boilerplate/features/app/ui/pages/app.dart';
+import 'package:flutter_mobx_dio_boilerplate/features/app/ui/pages/app_screen.dart';
 import 'package:flutter_mobx_dio_boilerplate/utils/log/log.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';

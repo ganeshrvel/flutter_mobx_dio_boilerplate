@@ -58,14 +58,15 @@ AppTheme getAppTheme(ThemeMode? mode) {
 
 /// Returns [ThemeData] from [ThemeData]
 ThemeData getAppThemeData(ThemeMode mode) {
-  ThemeMode? _themeMode = mode;
+  final _themeMode = mode;
 
-  final _platformThemeMode = getPlatformThemeMode(null);
-
-  /// if [platformThemeMode] is not null then follow that
-  if (isNotNull(_platformThemeMode)) {
-    _themeMode = _platformThemeMode;
-  }
+  // todo uncomment this section to pick the theme from the OS
+  // final _platformThemeMode = getPlatformThemeMode(null);
+  //
+  // /// if [platformThemeMode] is not null then follow that
+  // if (isNotNull(_platformThemeMode)) {
+  //   _themeMode = _platformThemeMode!;
+  // }
 
   return getAppTheme(_themeMode).themeData;
 }
