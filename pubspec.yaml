@@ -36,6 +36,9 @@ dependencies:
   # flutter packages pub run flutter_launcher_icons:main
   flutter_launcher_icons: ^0.9.1
 
+  # fonts
+  google_fonts: ^2.1.0
+
   # MobX is a library for reactively managing the state of your applications. Use the power of
   # observables, actions, and reactions to supercharge your Dart and Flutter apps.
   flutter_mobx: ^2.0.2

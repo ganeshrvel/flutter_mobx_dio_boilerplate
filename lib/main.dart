@@ -30,7 +30,7 @@ Future<void> main() async {
     );
   });
 
-  runApp(App());
+  runApp(AppScreen());
 
   Isolate.current.addErrorListener(RawReceivePort((pair) async {
     final errorAndStacktrace = pair as List;

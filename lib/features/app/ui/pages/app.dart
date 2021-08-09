@@ -6,11 +6,12 @@ import 'package:flutter_mobx_dio_boilerplate/common/di/di.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/l10n/l10n.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/l10n/l10n_helpers.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/router/root_router.dart';
+import 'package:flutter_mobx_dio_boilerplate/common/themes/theme_helper.dart';
 import 'package:flutter_mobx_dio_boilerplate/constants/env.dart';
 import 'package:flutter_mobx_dio_boilerplate/constants/strings.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/app/ui/store/app_store.dart';
 
-class App extends StatelessWidget {
+class AppScreen extends StatelessWidget {
   final _appStore = getIt<AppStore>();
 
   void setErrorBuilder() {
