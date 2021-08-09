@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:auto_route/auto_route_annotations.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/router/router_auth_guard.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/home/ui/pages/home.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/ui/pages/login.dart';
@@ -7,29 +6,41 @@ import 'package:flutter_mobx_dio_boilerplate/features/page_not_found/ui/pages/pa
 import 'package:flutter_mobx_dio_boilerplate/features/profile/ui/pages/profile.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/splash/ui/pages/splash.dart';
 
-@CustomAutoRouter()
-class $Router {
-  @CustomRoute(
-    initial: true,
-  )
-  HomeScreen homeScreen;
+@AdaptiveAutoRouter(
+  routes: <AutoRoute>[
+    // splash
+    AutoRoute(
+      initial: true,
+      path: '/splashScreen',
+      page: SplashScreen,
+    ),
 
-  @CustomRoute(
-    fullscreenDialog: true,
-    transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
-    durationInMilliseconds: 50,
-  )
-  LoginScreen loginScreen;
+    // home
+    AutoRoute(
+      initial: true,
+      path: '/homeScreen',
+      page: HomeScreen,
+    ),
 
-  SplashScreen splashScreen;
+    // login
+    AutoRoute(
+      path: '/loginScreen',
+      page: LoginScreen,
+    ),
 
-  @GuardedBy([RouterAuthGuard])
-  @CustomRoute(
-    transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
-    durationInMilliseconds: 50,
-  )
-  ProfileScreen profileScreen;
+    // login
+    AutoRoute(
+      path: '/profileScreen',
+      page: ProfileScreen,
+      guards: [
+        RouterAuthGuard,
+      ],
+    ),
 
-  @unknownRoute
-  PageNotFoundScreen pageNotFoundScreen;
-}
+    AutoRoute(
+      path: '*',
+      page: PageNotFoundScreen,
+    ),
+  ],
+)
+class $RootRouter {}

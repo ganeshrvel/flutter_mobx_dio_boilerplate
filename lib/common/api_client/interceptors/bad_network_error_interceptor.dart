@@ -7,14 +7,15 @@ class BadNetworkErrorInterceptor extends Interceptor {
   final NetworkInfo _networkInfo = getIt<NetworkInfo>();
 
   @override
-  Future onRequest(RequestOptions options) async {
+  Future onRequest(
+      RequestOptions options, RequestInterceptorHandler handler) async {
     return options;
   }
 
   @override
-  Future onError(DioError error) async {
+  Future onError(DioError error, ErrorInterceptorHandler handler) async {
     if (error.response == null && !await _networkInfo.isConnected) {
-      return BadNetworkApiError();
+      return BadNetworkApiError(dioError: error);
     }
 
     return null;

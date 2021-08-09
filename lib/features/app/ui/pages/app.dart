@@ -5,16 +5,13 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/di/di.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/l10n/l10n.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/l10n/l10n_helpers.dart';
-import 'package:flutter_mobx_dio_boilerplate/common/router/router_auth_guard.dart';
-import 'package:flutter_mobx_dio_boilerplate/common/themes/theme_helper.dart';
-import 'package:flutter_mobx_dio_boilerplate/features/app/ui/store/app_store.dart';
-import 'package:flutter_mobx_dio_boilerplate/common/router/router.gr.dart'
-    as router_di;
+import 'package:flutter_mobx_dio_boilerplate/common/router/root_router.dart';
 import 'package:flutter_mobx_dio_boilerplate/constants/env.dart';
 import 'package:flutter_mobx_dio_boilerplate/constants/strings.dart';
+import 'package:flutter_mobx_dio_boilerplate/features/app/ui/store/app_store.dart';
 
 class App extends StatelessWidget {
-  final AppStore _appStore = getIt<AppStore>();
+  final _appStore = getIt<AppStore>();
 
   void setErrorBuilder() {
     ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
@@ -36,29 +33,27 @@ class App extends StatelessWidget {
           );
         }
 
-        return MaterialApp(
-          debugShowCheckedModeBanner: Env.data.debugShowCheckedModeBanner,
-          debugShowMaterialGrid: Env.data.debugShowMaterialGrid,
+        return MaterialApp.router(
+          debugShowCheckedModeBanner: env.config.debugShowCheckedModeBanner,
+          debugShowMaterialGrid: env.config.debugShowMaterialGrid,
           builder: (context, nativeNavigator) {
             setErrorBuilder();
 
-            return ExtendedNavigator<router_di.Router>(
-              initialRoute: router_di.Routes.splashScreen,
-              router: router_di.Router(),
-              guards: [
-                RouterAuthGuard(),
-              ],
-              observers: const [],
-            );
+            return Container();
           },
           title: Strings.APP_NAME,
-          theme: getAppThemeFromThemeMode(_appStore.theme.mode),
+          theme: getAppThemeData(_appStore.theme!.mode),
           locale: Locale(
-            _appStore.language.locale,
-            _appStore.language.countryCode,
+            _appStore.language!.locale,
+            _appStore.language!.countryCode,
           ),
           supportedLocales: supportedL10nLanguages
-              .map((language) => Locale(language.locale, language.countryCode))
+              .map(
+                (language) => Locale(
+                  language.locale,
+                  language.countryCode,
+                ),
+              )
               .toList(),
           localizationsDelegates: [
             L10n.delegate,
@@ -78,6 +73,11 @@ class App extends StatelessWidget {
               orElse: () => supportedLocales.first,
             );
           },
+          routeInformationParser: rootRouter.defaultRouteParser(),
+          routerDelegate: AutoRouterDelegate(
+            rootRouter,
+            navigatorObservers: () => [AutoRouteObserver()],
+          ),
         );
       },
     );

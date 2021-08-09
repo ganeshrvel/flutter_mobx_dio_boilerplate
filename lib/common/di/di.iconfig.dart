@@ -33,7 +33,7 @@ import 'package:flutter_mobx_dio_boilerplate/features/login/data/controllers/log
 import 'package:flutter_mobx_dio_boilerplate/features/login/ui/store/login_store.dart';
 import 'package:get_it/get_it.dart';
 
-Future<void> $initGetIt(GetIt g, {String environment}) async {
+Future<void> $initGetIt(GetIt g, {String? environment}) async {
   final loggerDi = _$LoggerDi();
   final dioDi = _$DioDi();
   final sharedPreferencesDi = _$SharedPreferencesDi();

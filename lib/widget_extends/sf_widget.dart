@@ -1,12 +1,12 @@
+import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/di/di.dart';
-import 'package:after_layout/after_layout.dart';
-import 'package:flutter_mobx_dio_boilerplate/utils/alerts/alerts_model.dart';
 import 'package:flutter_mobx_dio_boilerplate/utils/alerts/alerts.dart';
+import 'package:flutter_mobx_dio_boilerplate/utils/alerts/alerts_model.dart';
 
 abstract class SfWidget<S extends StatefulWidget> extends State<S>
     with AfterLayoutMixin<S> {
-  Alerts get _alerts => getIt<Alerts>();
+  final _alerts = getIt<Alerts>();
 
   @protected
   @override
@@ -21,7 +21,7 @@ abstract class SfWidget<S extends StatefulWidget> extends State<S>
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
       onWidgetUpdate();
     });
   }
@@ -44,7 +44,7 @@ abstract class SfWidget<S extends StatefulWidget> extends State<S>
   void throwException(
     BuildContext context,
     Exception exception, {
-    StackTrace stackTrace,
+    StackTrace? stackTrace,
   }) =>
       _alerts.setException(
         context,
@@ -57,11 +57,11 @@ abstract class SfWidget<S extends StatefulWidget> extends State<S>
   void throwAlert(
     BuildContext context,
     String message, {
-    String title,
-    AlertsTypeEnum type,
-    AlertsPopupEnum popupType,
-    StackTrace stackTrace,
-    Duration duration,
+    String? title,
+    AlertsTypeEnum? type,
+    AlertsPopupEnum? popupType,
+    StackTrace? stackTrace,
+    Duration? duration,
   }) =>
       _alerts.setAlert(
         context,

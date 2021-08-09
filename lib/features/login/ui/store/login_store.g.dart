@@ -27,13 +27,13 @@ mixin _$LoginStore on _LoginStoreBase, Store {
   final _$isLoggedInAtom = Atom(name: '_LoginStoreBase.isLoggedIn');
 
   @override
-  bool get isLoggedIn {
+  bool? get isLoggedIn {
     _$isLoggedInAtom.reportRead();
     return super.isLoggedIn;
   }
 
   @override
-  set isLoggedIn(bool value) {
+  set isLoggedIn(bool? value) {
     _$isLoggedInAtom.reportWrite(value, super.isLoggedIn, () {
       super.isLoggedIn = value;
     });
@@ -42,13 +42,13 @@ mixin _$LoginStore on _LoginStoreBase, Store {
   final _$errorMessageAtom = Atom(name: '_LoginStoreBase.errorMessage');
 
   @override
-  String get errorMessage {
+  String? get errorMessage {
     _$errorMessageAtom.reportRead();
     return super.errorMessage;
   }
 
   @override
-  set errorMessage(String value) {
+  set errorMessage(String? value) {
     _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
       super.errorMessage = value;
     });
@@ -58,7 +58,7 @@ mixin _$LoginStore on _LoginStoreBase, Store {
 
   @override
   Future<void> doLogin(BuildContext context, PostLoginRequestModel params,
-      {RouteRedirectModel redirectOnLogin}) {
+      {RouteRedirectModel? redirectOnLogin}) {
     return _$doLoginAsyncAction.run(
         () => super.doLogin(context, params, redirectOnLogin: redirectOnLogin));
   }
@@ -75,7 +75,7 @@ mixin _$LoginStore on _LoginStoreBase, Store {
   final _$logoutAsyncAction = AsyncAction('_LoginStoreBase.logout');
 
   @override
-  Future<void> logout(BuildContext context, {bool redirectToHome}) {
+  Future<void> logout(BuildContext context, {bool? redirectToHome}) {
     return _$logoutAsyncAction
         .run(() => super.logout(context, redirectToHome: redirectToHome));
   }

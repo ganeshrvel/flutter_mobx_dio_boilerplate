@@ -1,14 +1,13 @@
 import 'package:flutter/widgets.dart';
-import 'package:injectable/injectable.dart';
-import 'package:meta/meta.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/exceptions/exceptions.dart';
-import 'package:flutter_mobx_dio_boilerplate/constants/errors.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/helpers/navigation_helper.dart';
+import 'package:flutter_mobx_dio_boilerplate/constants/errors.dart';
 import 'package:flutter_mobx_dio_boilerplate/services/crashes_service.dart';
 import 'package:flutter_mobx_dio_boilerplate/utils/alerts/alerts_model.dart';
 import 'package:flutter_mobx_dio_boilerplate/utils/log/log.dart';
+import 'package:injectable/injectable.dart';
 
-@lazySingleton
+@LazySingleton()
 class AlertsHelper {
   CrashesService crashesService;
 
@@ -17,11 +16,11 @@ class AlertsHelper {
   AlertsModel getAlert(
     BuildContext context,
     String body, {
-    String title,
-    AlertsTypeEnum type,
-    AlertsPopupEnum popupType,
-    StackTrace stackTrace,
-    Duration duration,
+    String? title,
+    AlertsTypeEnum? type,
+    AlertsPopupEnum? popupType,
+    StackTrace? stackTrace,
+    Duration? duration,
   }) {
     String _title;
     final _type = type ?? AlertsTypeEnum.ERROR;
@@ -53,7 +52,7 @@ class AlertsHelper {
       context: context,
       body: body,
       title: _title,
-      type: type,
+      type: _type,
       popupType: _popupType,
       duration: duration,
     );
@@ -62,7 +61,7 @@ class AlertsHelper {
   AlertsModel getException(
     BuildContext context,
     Exception exception, {
-    @required StackTrace stackTrace,
+    required StackTrace? stackTrace,
   }) {
     String _body;
 
@@ -80,7 +79,7 @@ class AlertsHelper {
       _body = Errors.CACHE_FAILURE_MESSAGE;
     } else if (exception is ApiErrorMessageException &&
         exception.errorMessage != null) {
-      _body = exception.errorMessage;
+      _body = exception.errorMessage!;
     } else {
       _body = Errors.UNKNOWN_FAILURE_MESSAGE;
 

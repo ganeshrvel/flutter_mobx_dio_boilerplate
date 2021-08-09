@@ -7,18 +7,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:injectable/injectable.dart';
 
-@lazySingleton
+@LazySingleton()
 class FlashHelper {
   Completer<BuildContext> _buildCompleter = Completer<BuildContext>();
 
   void init(BuildContext context) {
-    if (_buildCompleter?.isCompleted == false) {
+    if (_buildCompleter.isCompleted == false) {
       _buildCompleter.complete(context);
     }
   }
 
   void dispose() {
-    if (_buildCompleter?.isCompleted == false) {
+    if (_buildCompleter.isCompleted == false) {
       _buildCompleter.completeError(FlutterError('disposed'));
     }
 
@@ -28,24 +28,24 @@ class FlashHelper {
   Color _backgroundColor(BuildContext context) {
     final theme = Theme.of(context);
 
-    return theme.dialogTheme?.backgroundColor ?? theme.dialogBackgroundColor;
+    return theme.dialogTheme.backgroundColor ?? theme.dialogBackgroundColor;
   }
 
-  TextStyle _titleStyle(BuildContext context, [Color color]) {
+  TextStyle _titleStyle(BuildContext context, [Color? color]) {
     final theme = Theme.of(context);
 
-    return (theme.dialogTheme?.titleTextStyle ?? theme.textTheme.headline6)
+    return (theme.dialogTheme.titleTextStyle ?? theme.textTheme.headline6)!
         .copyWith(color: color);
   }
 
-  TextStyle _contentStyle(BuildContext context, [Color color]) {
+  TextStyle _contentStyle(BuildContext context, [Color? color]) {
     final theme = Theme.of(context);
 
-    return (theme.dialogTheme?.contentTextStyle ?? theme.textTheme.bodyText2)
+    return (theme.dialogTheme.contentTextStyle ?? theme.textTheme.bodyText2)!
         .copyWith(color: color);
   }
 
-  Future<T> toast<T>(String message) async {
+  Future<T?> toast<T>(String message) async {
     final context = await _buildCompleter.future;
 
     return showFlash<T>(
@@ -57,7 +57,6 @@ class FlashHelper {
           alignment: const Alignment(0, 0.5),
           margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-          enableDrag: false,
           backgroundColor: Colors.black87,
           child: DefaultTextStyle(
             style: const TextStyle(fontSize: 16.0, color: Colors.white),
@@ -72,20 +71,20 @@ class FlashHelper {
     );
   }
 
-  Future<T> snackBar<T>(
+  Future<T?> snackBar<T>(
     BuildContext context, {
-    @required String message,
-    String title,
-    Widget primaryAction,
-    ActionCallback onPrimaryActionTap,
+    required String message,
+    String? title,
+    Widget? primaryAction,
+    ActionCallback? onPrimaryActionTap,
     HorizontalDismissDirection horizontalDismissDirection =
         HorizontalDismissDirection.horizontal,
     Color backgroundColor = Colors.black87,
-    EdgeInsets margin,
-    BorderRadius borderRadius,
-    Duration duration,
-    WillPopCallback onWillPop,
-    Function(FlashController<T> controller) flashControllerCb,
+    EdgeInsets? margin,
+    BorderRadius? borderRadius,
+    Duration? duration,
+    WillPopCallback? onWillPop,
+    Function(FlashController<T> controller)? flashControllerCb,
   }) {
     final _margin = margin ?? const EdgeInsets.only(bottom: 0);
     final _borderRadius =
@@ -95,7 +94,7 @@ class FlashHelper {
     return showFlash<T>(
       context: context,
       duration: _duration,
-      onWillPop: onWillPop ?? onWillPop,
+      onWillPop: onWillPop ?? onWillPop!,
       persistent: false,
       builder: (context, controller) {
         if (flashControllerCb != null) {
@@ -112,13 +111,13 @@ class FlashHelper {
             title: title == null
                 ? null
                 : Text(title, style: _titleStyle(context, Colors.white)),
-            message: Text(message, style: _contentStyle(context, Colors.white)),
+            content: Text(message, style: _contentStyle(context, Colors.white)),
             primaryAction: onPrimaryActionTap == null
-                ? FlatButton(
+                ? ElevatedButton(
                     onPressed: onPrimaryActionTap == null
                         ? null
                         : () => onPrimaryActionTap(controller),
-                    child: primaryAction == null ? primaryAction : null,
+                    child: primaryAction == null ? primaryAction! : Container(),
                   )
                 : null,
           ),
@@ -127,14 +126,14 @@ class FlashHelper {
     );
   }
 
-  Future<T> simpleDialog<T>(
+  Future<T?> simpleDialog<T>(
     BuildContext context, {
-    String title,
-    @required String message,
-    Widget negativeAction,
-    ActionCallback negativeActionTap,
-    Widget positiveAction,
-    ActionCallback positiveActionTap,
+    String? title,
+    required String message,
+    Widget? negativeAction,
+    ActionCallback? negativeActionTap,
+    Widget? positiveAction,
+    ActionCallback? positiveActionTap,
   }) {
     return showFlash<T>(
       context: context,
@@ -148,17 +147,17 @@ class FlashHelper {
           child: FlashBar(
             title:
                 title == null ? null : Text(title, style: _titleStyle(context)),
-            message: Text(message, style: _contentStyle(context)),
+            content: Text(message, style: _contentStyle(context)),
             actions: <Widget>[
               if (negativeAction != null)
-                FlatButton(
+                ElevatedButton(
                   onPressed: negativeActionTap == null
                       ? null
                       : () => negativeActionTap(controller),
                   child: negativeAction,
                 ),
               if (positiveAction != null)
-                FlatButton(
+                ElevatedButton(
                   onPressed: positiveActionTap == null
                       ? null
                       : () => positiveActionTap(controller),
@@ -171,11 +170,11 @@ class FlashHelper {
     );
   }
 
-  Future<T> successBar<T>(
+  Future<T?> successBar<T>(
     BuildContext context, {
-    String title,
-    @required String message,
-    Duration duration,
+    String? title,
+    required String message,
+    Duration? duration,
   }) {
     final _duration = duration ?? const Duration(seconds: 3);
 
@@ -191,20 +190,20 @@ class FlashHelper {
             title: title == null
                 ? null
                 : Text(title, style: _titleStyle(context, Colors.white)),
-            message: Text(message, style: _contentStyle(context, Colors.white)),
+            content: Text(message, style: _contentStyle(context, Colors.white)),
             icon: Icon(Icons.check_circle, color: Colors.green[300]),
-            leftBarIndicatorColor: Colors.green[300],
+            indicatorColor: Colors.green[300],
           ),
         );
       },
     );
   }
 
-  Future<T> informationBar<T>(
+  Future<T?> informationBar<T>(
     BuildContext context, {
-    String title,
-    @required String message,
-    Duration duration,
+    String? title,
+    required String message,
+    Duration? duration,
   }) {
     final _duration = duration ?? const Duration(seconds: 3);
 
@@ -220,20 +219,20 @@ class FlashHelper {
             title: title == null
                 ? null
                 : Text(title, style: _titleStyle(context, Colors.white)),
-            message: Text(message, style: _contentStyle(context, Colors.white)),
+            content: Text(message, style: _contentStyle(context, Colors.white)),
             icon: Icon(Icons.info_outline, color: Colors.blue[300]),
-            leftBarIndicatorColor: Colors.blue[300],
+            indicatorColor: Colors.blue[300],
           ),
         );
       },
     );
   }
 
-  Future<T> errorBar<T>(
+  Future<T?> errorBar<T>(
     BuildContext context, {
-    String title,
-    @required String message,
-    Duration duration,
+    String? title,
+    required String message,
+    Duration? duration,
   }) {
     final _duration = duration ?? const Duration(seconds: 3);
 
@@ -249,18 +248,18 @@ class FlashHelper {
             title: title == null
                 ? null
                 : Text(title, style: _titleStyle(context, Colors.white)),
-            message: Text(message, style: _contentStyle(context, Colors.white)),
+            content: Text(message, style: _contentStyle(context, Colors.white)),
             icon: Icon(Icons.warning, color: Colors.red[300]),
-            leftBarIndicatorColor: Colors.red[300],
+            indicatorColor: Colors.red[300],
           ),
         );
       },
     );
   }
 
-  Future<T> blockDialog<T>(
+  Future<T?> blockDialog<T>(
     BuildContext context, {
-    @required Completer<T> dismissCompleter,
+    required Completer<T> dismissCompleter,
   }) {
     return showFlash<T>(
       context: context,

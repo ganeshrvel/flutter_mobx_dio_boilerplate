@@ -6,7 +6,7 @@ class SplashLoading extends StatelessWidget {
   final String title;
 
   const SplashLoading({
-    @required this.title,
+    required this.title,
   });
 
   @override

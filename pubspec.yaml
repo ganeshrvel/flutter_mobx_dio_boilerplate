@@ -7,10 +7,17 @@ description: Flutter Mobx Dio Boilerplate
 # Both the version and the builder number may be overridden in flutter
 # build by specifying --build-name and --build-number, respectively.
 # Read more about versioning at semver.org.
-version: 1.0.0+1
+version: 2.0.0
+
+publish_to: none
 
 environment:
-  sdk: ">=2.6.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
+  flutter: ">=2.0.0 <3.0.0"
+
+dependency_overrides:
+  analyzer: ^2.0.0
+  meta: ^1.7.0
 
 dependencies:
   flutter:
@@ -21,80 +28,88 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.3
+  cupertino_icons: ^1.0.3
 
   # The following adds the launcher icon support to your application.
   # run below mentioned commands to generate launcher icons
   # flutter packages get
   # flutter packages pub run flutter_launcher_icons:main
-  flutter_launcher_icons: ^0.7.5
+  flutter_launcher_icons: ^0.9.1
 
   # MobX is a library for reactively managing the state of your applications. Use the power of
   # observables, actions, and reactions to supercharge your Dart and Flutter apps.
-  mobx: ^1.2.1+2
-  flutter_mobx: ^1.1.0+2
+  flutter_mobx: ^2.0.2
+  mobx: ^2.0.4
 
   # Service locator
-  get_it: ^4.0.4
-  injectable: ^1.0.4
+  get_it: ^7.1.4
+  injectable: ^1.4.1
+  provider: ^5.0.0
 
   # data channel
-  data_channel: ^1.0.4+1
+  data_channel: ^2.0.0+1
 
   # API fetching
-  dio: ^3.0.8
-  pretty_dio_logger: ^1.1.1
+  dio: ^4.0.0
+  pretty_dio_logger: ^1.2.0-beta-1
 
   # Connectivity
-  data_connection_checker: ^0.3.4
+  data_connection_checker: #^0.3.4
+    git:
+      url: https://github.com/chornthorn/data_connection_checker.git
+      ref: master
 
   # Local cache
-  shared_preferences: ^0.5.10
+  shared_preferences: ^2.0.6
 
-  meta: ^1.1.8
+  meta: ^1.7.0
 
   # Logging
-  logger: ^0.8.3
+  logger: ^1.0.0
 
   # Routing
-  auto_route: ^0.4.2
-
-  # Json
-  json_serializable: ^3.4.1
-  json_annotation: ^3.0.1
+  auto_route: ^2.2.0
 
   # snackbar
-  flushbar:
+  another_flushbar: #^1.10.23
     git:
-      url: https://github.com/AndreHaueisen/flushbar.git
-  flash: ^1.2.3
+      url: https://github.com/ganeshrvel/another-flushbar
+      ref: 8b74a6aeec415678e2b751f769f73f82a098ed0b
 
-  after_layout: ^1.0.7+2
+  flash: ^2.0.1
 
-  equatable: ^1.1.1
+  after_layout: ^1.1.0
 
-  # video player
-  chewie: ^0.9.10
-  video_player: ^0.10.12+2
+  equatable: ^2.0.0
+
+  # validator
+  rules: ^2.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  test: any
+
   # Linting
-  lint: ^1.2.0
+  lint: ^1.5.3
 
   # Build runner
-  build_runner: ^1.10.2
+  build_runner: ^2.0.5
+  source_gen: ^1.0.5
 
   # Service locator
-  injectable_generator: ^1.0.4
+  injectable_generator: ^1.4.1
 
   # MobX
-  mobx_codegen: ^1.1.0+1
+  mobx_codegen: ^2.0.3
 
   # Routing
-  auto_route_generator: ^0.4.0
+  auto_route_generator: ^2.3.0
+
+  # Json
+  json_serializable: ^5.0.0
+  json_annotation: ^4.1.0
 
 flutter_icons:
   image_path: "assets/icons/ic_launcher.png"

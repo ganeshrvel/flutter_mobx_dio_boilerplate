@@ -1,11 +1,11 @@
-import 'package:flushbar/flushbar.dart';
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/widgets.dart';
-import 'package:injectable/injectable.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/helpers/flushbar_helper.dart';
 import 'package:flutter_mobx_dio_boilerplate/utils/alerts/alerts_helper.dart';
 import 'package:flutter_mobx_dio_boilerplate/utils/alerts/alerts_model.dart';
+import 'package:injectable/injectable.dart';
 
-@lazySingleton
+@LazySingleton()
 class Alerts {
   AlertsHelper alertsHelper;
 
@@ -20,11 +20,11 @@ class Alerts {
   void setAlert(
     BuildContext context,
     String message, {
-    String title,
-    AlertsTypeEnum type,
-    AlertsPopupEnum popupType,
-    StackTrace stackTrace,
-    Duration duration,
+    String? title,
+    AlertsTypeEnum? type,
+    AlertsPopupEnum? popupType,
+    StackTrace? stackTrace,
+    Duration? duration,
   }) {
     final alert = alertsHelper.getAlert(
       context,
@@ -40,7 +40,7 @@ class Alerts {
   }
 
   void setException(BuildContext context, Exception exception,
-      {StackTrace stackTrace}) {
+      {StackTrace? stackTrace}) {
     final alert = alertsHelper.getException(
       context,
       exception,
@@ -50,7 +50,7 @@ class Alerts {
     _handleSetNewAlert(alert);
   }
 
-  void removeAlert({int generatedTime, AlertsModel alert}) {
+  void removeAlert({int? generatedTime, AlertsModel? alert}) {
     if (generatedTime != null) {
       _alertsList.removeWhere((a) => a.generatedTime == generatedTime);
 
@@ -94,7 +94,7 @@ class Alerts {
     }
   }
 
-  Future<void> _buildSnackbar(
+  Future<dynamic> _buildSnackbar(
     AlertsModel alertItem,
   ) async {
     final _flushbarInstance = flushbarHelper.buildErrorSnackbar(
@@ -108,7 +108,7 @@ class Alerts {
     _flushbarList.add(_activeAlertItem);
 
     return _flushbarInstance
-      ..onStatusChanged = (FlushbarStatus status) {
+      ..onStatusChanged = (FlushbarStatus? status) {
         switch (status) {
           case FlushbarStatus.DISMISSED:
             {
@@ -122,6 +122,8 @@ class Alerts {
           case FlushbarStatus.IS_APPEARING:
             break;
           case FlushbarStatus.IS_HIDING:
+            break;
+          default:
             break;
         }
       }

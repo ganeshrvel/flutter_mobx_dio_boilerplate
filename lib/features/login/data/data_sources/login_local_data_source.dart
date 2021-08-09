@@ -1,27 +1,27 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:injectable/injectable.dart';
-import 'package:flutter_mobx_dio_boilerplate/common/exceptions/exceptions.dart';
 import 'package:data_channel/data_channel.dart';
+import 'package:flutter_mobx_dio_boilerplate/common/exceptions/exceptions.dart';
 import 'package:flutter_mobx_dio_boilerplate/constants/shared_preferences_keys.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/data/models/authentication_model.dart';
+import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-@lazySingleton
+@LazySingleton()
 class LoginLocalDataSource {
   SharedPreferences sharedPreferences;
 
   LoginLocalDataSource(this.sharedPreferences);
 
-  Future<DC<Exception, AuthenticationModel>> getAuthenticationData() async {
+  Future<DC<Exception, AuthenticationModel?>> getAuthenticationData() async {
     try {
       final pref = sharedPreferences;
 
       final jsonString = pref.getString(SharedPreferencesKeys.AUTH_TOKEN);
 
-      AuthenticationModel _authData;
-      Exception _exception;
+      AuthenticationModel? _authData;
+      Exception? _exception;
 
       if (jsonString != null) {
         _authData = AuthenticationModel.fromJson(
@@ -72,7 +72,7 @@ class LoginLocalDataSource {
       final pref = sharedPreferences;
 
       return DC.data(
-        await pref.setString(SharedPreferencesKeys.AUTH_TOKEN, null),
+        await pref.setString(SharedPreferencesKeys.AUTH_TOKEN, ''),
       );
     } on Exception {
       return DC.error(

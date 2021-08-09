@@ -1,21 +1,21 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart' as foundation;
-import 'package:meta/meta.dart';
+import 'package:flutter_mobx_dio_boilerplate/common/di/di.dart';
 import 'package:flutter_mobx_dio_boilerplate/constants/urls.dart';
+import 'package:injectable/injectable.dart';
 
+@LazySingleton()
 class Env {
-  static EnvData _env;
-
-  static EnvData get data => _env;
-
   static final bool IS_RELEASE = foundation.kReleaseMode;
 
   static final bool IS_DEBUG = !foundation.kReleaseMode;
 
-  static void init() {
-    _env = IS_RELEASE ? Env.prod : Env.dev;
-  }
+  static final bool IS_TEST = Platform.environment.containsKey('FLUTTER_TEST');
 
-  static final EnvData dev = EnvData(
+  _EnvData get config => IS_RELEASE ? prod : dev;
+
+  static final _EnvData dev = _EnvData(
     debug: true,
     debugShowCheckedModeBanner: false,
     debugShowMaterialGrid: false,
@@ -23,7 +23,7 @@ class Env {
     apiBaseUrl: UrlConstants.DEV_API_BASE_URL,
   );
 
-  static final EnvData prod = EnvData(
+  static final _EnvData prod = _EnvData(
     debug: false,
     debugShowCheckedModeBanner: false,
     debugShowMaterialGrid: false,
@@ -32,18 +32,20 @@ class Env {
   );
 }
 
-class EnvData {
+class _EnvData {
   final bool debug;
   final bool debugShowCheckedModeBanner;
   final bool debugShowMaterialGrid;
   final bool debugApiClient;
   final String apiBaseUrl;
 
-  EnvData({
-    @required this.debug,
-    @required this.debugShowCheckedModeBanner,
-    @required this.debugShowMaterialGrid,
-    @required this.debugApiClient,
-    @required this.apiBaseUrl,
+  _EnvData({
+    required this.debug,
+    required this.debugShowCheckedModeBanner,
+    required this.debugShowMaterialGrid,
+    required this.debugApiClient,
+    required this.apiBaseUrl,
   });
 }
+
+final Env env = getIt<Env>();

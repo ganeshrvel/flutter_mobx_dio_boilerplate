@@ -1,11 +1,11 @@
-import 'package:injectable/injectable.dart';
 import 'package:data_channel/data_channel.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/data/models/authentication_model.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/data/models/post_login_request_model.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/data/models/post_login_response_model.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/data/repositories/login_repository.dart';
+import 'package:injectable/injectable.dart';
 
-@lazySingleton
+@LazySingleton()
 class LoginController {
   final LoginRepository _loginRepository;
 
@@ -16,9 +16,9 @@ class LoginController {
   ) async {
     final _postLoginData = await _loginRepository.postLogin(params);
 
-    if (_postLoginData.hasError || _postLoginData.data?.tokenId == null) {
+    if (_postLoginData.hasError) {
       return DC.error(
-        _postLoginData.error,
+        _postLoginData.error!,
       );
     }
 
@@ -28,7 +28,7 @@ class LoginController {
 
     if (_localCacheData.hasError) {
       return DC.error(
-        _localCacheData.error,
+        _localCacheData.error!,
       );
     }
 
@@ -38,11 +38,11 @@ class LoginController {
   }
 
   // todo init -> fetch token from url -> validate -> refresh
-  Future<DC<Exception, AuthenticationModel>> getAuthenticationData() async {
+  Future<DC<Exception, AuthenticationModel?>> getAuthenticationData() async {
     return _loginRepository.getAuthenticationData();
   }
 
-  Future<DC<Exception, AuthenticationModel>>
+  Future<DC<Exception, AuthenticationModel?>>
       getDeviceAuthenticationData() async {
     return _loginRepository.getDeviceAuthenticationData();
   }

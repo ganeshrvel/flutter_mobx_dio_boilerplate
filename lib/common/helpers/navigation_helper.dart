@@ -3,16 +3,16 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/router/router.gr.dart';
 
 bool isCurrentScreen(BuildContext context) {
-  return ModalRoute.of(context).isCurrent;
+  return ModalRoute.of(context)?.isCurrent ?? false;
 }
 
-String getCurrentScreen(BuildContext context) {
-  return ModalRoute.of(context).settings.name;
+String? getCurrentScreen(BuildContext context) {
+  return ModalRoute.of(context)!.settings.name;
 }
 
 void navigateToLogin(
   BuildContext context, {
-  Object routeArgs,
+  Object? routeArgs,
 }) {
   navigateToRoute(
     context,
@@ -24,7 +24,7 @@ void navigateToLogin(
 void navigateToRoute(
   BuildContext context,
   String routeName, {
-  Object routeArgs,
+  Object? routeArgs,
 }) {
   if (getCurrentScreen(context) == routeName) {
     return;
@@ -44,7 +44,7 @@ void navigateToRoute(
 
 void navigateToHome(
   BuildContext context, {
-  Object routeArgs,
+  Object? routeArgs,
 }) {
   navigateToRouteAndRemoveUntil(context, Routes.homeScreen,
       routeArgs: routeArgs);
@@ -52,26 +52,26 @@ void navigateToHome(
 
 void navigateToRouteAndReplace(
   BuildContext context,
-  String routeName, {
-  Object routeArgs,
+  String? routeName, {
+  Object? routeArgs,
 }) {
   if (routeArgs != null) {
     ExtendedNavigator.of(context).pushReplacementNamed(
-      routeName,
+      routeName!,
     );
 
     return;
   }
 
   ExtendedNavigator.of(context).pushReplacementNamed(
-    routeName,
+    routeName!,
   );
 }
 
 void navigateToRouteAndRemoveUntil(
   BuildContext context,
   String routeName, {
-  Object routeArgs,
+  Object? routeArgs,
 }) {
   if (routeArgs != null) {
     ExtendedNavigator.of(context).pushNamedAndRemoveUntil(

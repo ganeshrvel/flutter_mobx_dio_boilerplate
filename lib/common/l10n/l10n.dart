@@ -6,7 +6,7 @@ import 'package:flutter_mobx_dio_boilerplate/common/l10n/l10n_helpers.dart';
 class L10n {
   final Locale locale;
 
-  Map<String, String> localizedStrings;
+  Map<String, String>? localizedStrings;
 
   final Map<String, Map<String, String>> localizedStringsList = {
     'en': en.enLocaleHashMap,
@@ -19,7 +19,7 @@ class L10n {
 
   // Helper method to keep the code in the widgets concise
   // Localizations are accessed using an InheritedWidget "of" syntax
-  static L10n of(BuildContext context) {
+  static L10n? of(BuildContext context) {
     return Localizations.of<L10n>(context, L10n);
   }
 
@@ -30,8 +30,8 @@ class L10n {
   }
 
   // This method will be called from every widget which needs a localized text
-  String translate(String key) {
-    return localizedStrings[key];
+  String? translate(String key) {
+    return localizedStrings![key];
   }
 }
 

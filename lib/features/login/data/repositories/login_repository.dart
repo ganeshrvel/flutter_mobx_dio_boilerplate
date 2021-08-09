@@ -1,4 +1,3 @@
-import 'package:injectable/injectable.dart';
 import 'package:data_channel/data_channel.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/network/network_info.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/data/data_sources/login_local_data_source.dart';
@@ -7,8 +6,9 @@ import 'package:flutter_mobx_dio_boilerplate/features/login/data/models/authenti
 import 'package:flutter_mobx_dio_boilerplate/features/login/data/models/post_login_request_model.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/data/models/post_login_response_model.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/data/models/user_model.dart';
+import 'package:injectable/injectable.dart';
 
-@lazySingleton
+@LazySingleton()
 class LoginRepository {
   final LoginLocalDataSource _loginLocalDataSource;
   final LoginRemoteDataSource _loginRemoteDataSource;
@@ -26,19 +26,19 @@ class LoginRepository {
     return _loginRemoteDataSource.postLogin(params);
   }
 
-  Future<DC<Exception, AuthenticationModel>> getAuthenticationData() async {
+  Future<DC<Exception, AuthenticationModel?>> getAuthenticationData() async {
     if (await _networkInfo.isConnected) {
       final _getLocalTokenData = await getDeviceAuthenticationData();
 
       if (_getLocalTokenData.hasError) {
-        return DC.error(_getLocalTokenData.error);
+        return DC.error(_getLocalTokenData.error!);
       }
 
       final _loginData = await getUserData();
 
       return DC.forward(
         _loginData,
-        AuthenticationModel(tokenId: _getLocalTokenData.data.tokenId),
+        AuthenticationModel(tokenId: _getLocalTokenData.data!.tokenId),
       );
     }
 
@@ -49,7 +49,7 @@ class LoginRepository {
     return _loginRemoteDataSource.getLogin();
   }
 
-  Future<DC<Exception, AuthenticationModel>>
+  Future<DC<Exception, AuthenticationModel?>>
       getDeviceAuthenticationData() async {
     return _loginLocalDataSource.getAuthenticationData();
   }

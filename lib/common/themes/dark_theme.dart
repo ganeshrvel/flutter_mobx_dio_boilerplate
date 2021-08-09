@@ -1,5 +1,5 @@
-import 'package:flutter_mobx_dio_boilerplate/common/themes/theme_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx_dio_boilerplate/common/themes/theme_helper.dart';
 
 class DarkTheme {
   static final ThemeData themeData = ThemeData(

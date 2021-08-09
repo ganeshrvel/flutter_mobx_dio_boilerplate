@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DialogAlert extends AlertDialog {
-  static void show(BuildContext context, String content, {String title}) {
+  static void show(BuildContext context, String content, {String? title}) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -9,7 +9,7 @@ class DialogAlert extends AlertDialog {
           title: title == null ? null : Text(title),
           content: Text(content),
           actions: <Widget>[
-            FlatButton(
+            ElevatedButton(
               onPressed: () => Navigator.of(context).pop(),
               child: const Text('Ok'),
             ),
@@ -25,9 +25,9 @@ class DialogConfirm extends AlertDialog {
     BuildContext context,
     String content,
     Function() onYes, {
-    String title,
-    String yes,
-    String no,
+    String? title,
+    String? yes,
+    String? no,
   }) {
     showDialog(
       context: context,
@@ -36,11 +36,11 @@ class DialogConfirm extends AlertDialog {
           title: title == null ? null : Text(title),
           content: Text(content),
           actions: <Widget>[
-            FlatButton(
+            ElevatedButton(
               onPressed: () => Navigator.of(context).pop(),
               child: const Text('No'),
             ),
-            FlatButton(
+            ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop();
                 onYes();

@@ -34,6 +34,6 @@ class LoginModelMapper {
       throw Exception('Invalid payload.');
     }
 
-    return payloadMap as Map<String, dynamic>;
+    return payloadMap;
   }
 }

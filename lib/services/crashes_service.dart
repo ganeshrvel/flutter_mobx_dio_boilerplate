@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:injectable/injectable.dart';
 
-@lazySingleton
+@LazySingleton()
 class CrashesService {
   CrashesService();
 
@@ -13,8 +13,8 @@ class CrashesService {
     // TODO: clear user in the crash service
   }
 
-  void nonFatalError(dynamic exception, StackTrace stack,
-      {BuildContext context}) {
+  void nonFatalError(dynamic exception, StackTrace? stack,
+      {BuildContext? context}) {
     // TODO: log fatal error in the crash service
   }
 

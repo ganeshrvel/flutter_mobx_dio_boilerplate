@@ -3,10 +3,10 @@ import 'package:flutter_mobx_dio_boilerplate/common/models/theme_model.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/themes/dark_theme.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/themes/light_theme.dart';
 
-MaterialColor hexColor2MaterialColor({Color color, int hexColor}) {
+MaterialColor hexColor2MaterialColor({Color? color, int? hexColor}) {
   assert(color != null || hexColor != null);
 
-  final _color = color ?? Color(hexColor);
+  final _color = color ?? Color(hexColor!);
   final _hexColor = hexColor ?? colorToInt(colorToHex(_color));
 
   final r = _color.red;
@@ -34,7 +34,7 @@ ThemeModel getDefaultAppTheme() {
   return const ThemeModel(mode: ThemeMode.light);
 }
 
-ThemeData getAppThemeFromThemeMode(ThemeMode mode) {
+ThemeData getAppThemeFromThemeMode(ThemeMode? mode) {
   if (mode == ThemeMode.light) {
     return LightTheme.themeData;
   }

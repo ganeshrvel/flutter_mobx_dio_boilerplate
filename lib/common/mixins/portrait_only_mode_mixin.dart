@@ -13,7 +13,8 @@ mixin PortraitModeMixin on StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _portraitModeOnly();
-    return null;
+
+    return Container();
   }
 }
 
@@ -27,7 +28,8 @@ mixin PortraitStatefulModeMixin<T extends StatefulWidget> on State<T> {
   @override
   Widget build(BuildContext context) {
     _portraitModeOnly();
-    return null;
+
+    return Container();
   }
 
   @override
@@ -66,7 +68,7 @@ void _enableRotation() {
 //    return Material(
 //      title: 'Flutter Demo',
 //      theme: CupertinoThemeData(),
-//      home: Text("Block screen rotation example"),
+//      home: Textography("Block screen rotation example", variant: TextVariants.body1,),
 //    );
 //  }
 //}

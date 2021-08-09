@@ -14,18 +14,27 @@ analyzer:
     implicit-casts: false
 
   errors:
+    sort_pub_dependencies: ignore
     non_constant_identifier_names: ignore
+    avoid_function_literals_in_foreach_calls: ignore
     avoid_classes_with_only_static_members: ignore
-    avoid_redundant_argument_values: ignore
     prefer_const_declarations: error
+    directives_ordering: warning
     constant_identifier_names: ignore
+    unnecessary_statements: error
+    invalid_use_of_visible_for_testing_member: error
     missing_required_param: error
     parameter_assignments: error
+    prefer_const_constructors: error
     unused_import: error
     sort_constructors_first: warning
     unused_field: warning
     unused_element: ignore
     overridden_fields: ignore
+    use_setters_to_change_properties: ignore
+    implementation_imports: ignore
+    avoid_redundant_argument_values: ignore
+    unnecessary_brace_in_string_interps: ignore
     unawaited_futures: warning
     unnecessary_final: error
     prefer_single_quotes: error
@@ -34,11 +43,15 @@ analyzer:
     avoid_relative_lib_imports: error
     await_only_futures: error
     prefer_typing_uninitialized_variables: error
+    deprecated_member_use: error
 
   exclude:
     - "vendors/**"
     - "resources/**"
+    - "**/*.iconfig.dart"
+    - "**/di.iconfig.dart"
     - "**/*.g.dart"
     - "**/*.gr.dart"
     - "lib/common/router/router.gr.dart"
-    - "component_templates"
+    - "component_templates/**"
+    - "packages/**"

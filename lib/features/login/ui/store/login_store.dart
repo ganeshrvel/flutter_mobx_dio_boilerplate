@@ -1,33 +1,22 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
-import 'package:injectable/injectable.dart';
-import 'package:mobx/mobx.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/enums/state_status.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/exceptions/exceptions.dart';
+import 'package:flutter_mobx_dio_boilerplate/common/helpers/navigation_helper.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/models/route_redirect_model.dart';
 import 'package:flutter_mobx_dio_boilerplate/constants/errors.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/data/controllers/login_controller.dart';
 import 'package:flutter_mobx_dio_boilerplate/features/login/data/models/post_login_request_model.dart';
-import 'package:flutter_mobx_dio_boilerplate/common/helpers/navigation_helper.dart';
-import 'package:flutter_mobx_dio_boilerplate/utils/alerts/alerts_model.dart';
 import 'package:flutter_mobx_dio_boilerplate/utils/alerts/alerts.dart';
+import 'package:flutter_mobx_dio_boilerplate/utils/alerts/alerts_model.dart';
+import 'package:injectable/injectable.dart';
+import 'package:mobx/mobx.dart';
 
 part 'login_store.g.dart';
 
-@lazySingleton
-class LoginStore extends _LoginStoreBase with _$LoginStore {
-  @override
-  LoginController loginController;
-
-  @override
-  Alerts alerts;
-
-  LoginStore(
-    this.loginController,
-    this.alerts,
-  ) : super(loginController, alerts);
-}
+@LazySingleton()
+class LoginStore = _LoginStoreBase with _$LoginStore;
 
 abstract class _LoginStoreBase with Store {
   LoginController loginController;
@@ -39,16 +28,16 @@ abstract class _LoginStoreBase with Store {
   @observable
   StateStatus isLoggedInStatus = StateStatus.INITIAL;
   @observable
-  bool isLoggedIn;
+  bool? isLoggedIn;
 
   @observable
-  String errorMessage;
+  String? errorMessage;
 
   @action
   Future<void> doLogin(
     BuildContext context,
     PostLoginRequestModel params, {
-    RouteRedirectModel redirectOnLogin,
+    RouteRedirectModel? redirectOnLogin,
   }) async {
     isLoggedInStatus = StateStatus.LOADING;
     final loginData = await loginController.postLogin(params);
@@ -112,7 +101,7 @@ abstract class _LoginStoreBase with Store {
         }
       },
       onData: (data) {
-        if (data.isAuthenticated) {
+        if (data!.isAuthenticated) {
           canPopCurrentRoute(context);
 
           isLoggedIn = true;
@@ -129,7 +118,7 @@ abstract class _LoginStoreBase with Store {
   }
 
   @action
-  Future<void> logout(BuildContext context, {bool redirectToHome}) async {
+  Future<void> logout(BuildContext context, {bool? redirectToHome}) async {
     final _redirectToHome = redirectToHome ?? true;
 
     final logoutData = await loginController.logout();

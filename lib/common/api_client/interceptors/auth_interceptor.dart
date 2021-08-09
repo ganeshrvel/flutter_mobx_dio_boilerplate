@@ -6,13 +6,14 @@ class AuthInterceptor extends Interceptor {
   LoginController get loginController => getIt<LoginController>();
 
   @override
-  Future<RequestOptions> onRequest(RequestOptions options) async {
+  Future<RequestOptions> onRequest(
+      RequestOptions options, RequestInterceptorHandler handler) async {
     final authData = await loginController.getDeviceAuthenticationData();
 
     if (!authData.hasError &&
         authData.hasData &&
-        authData.data.isAuthenticated) {
-      options.headers['Authorization'] = 'Bearer ${authData.data.tokenId}';
+        authData.data!.isAuthenticated) {
+      options.headers['Authorization'] = 'Bearer ${authData.data!.tokenId}';
     }
 
     return options;

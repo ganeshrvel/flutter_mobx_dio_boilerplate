@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/di/di.dart';
-import 'package:mobx/mobx.dart';
-import 'package:flutter_mobx_dio_boilerplate/common/router/router.gr.dart';
-import 'package:flutter_mobx_dio_boilerplate/features/login/ui/store/login_store.dart';
 import 'package:flutter_mobx_dio_boilerplate/common/helpers/navigation_helper.dart';
-import 'package:flutter_mobx_dio_boilerplate/widget_extends/sf_widget.dart';
-import 'package:flutter_mobx_dio_boilerplate/features/splash/ui/widgets/splash_loading.dart';
+import 'package:flutter_mobx_dio_boilerplate/common/router/router.gr.dart';
 import 'package:flutter_mobx_dio_boilerplate/constants/strings.dart';
+import 'package:flutter_mobx_dio_boilerplate/features/login/ui/store/login_store.dart';
+import 'package:flutter_mobx_dio_boilerplate/features/splash/ui/widgets/splash_loading.dart';
+import 'package:flutter_mobx_dio_boilerplate/utils/common/store_helper.dart';
+import 'package:flutter_mobx_dio_boilerplate/widget_extends/sf_widget.dart';
+import 'package:mobx/mobx.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key key}) : super(key: key);
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _SplashScreenState();
@@ -18,16 +19,16 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends SfWidget<SplashScreen> {
   LoginStore get _loginStore => getIt<LoginStore>();
 
-  List<ReactionDisposer> _disposers;
+  late final List<ReactionDisposer> _disposers;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    _disposers ??= [
+    _disposers = [
       reaction(
         (_) => _loginStore.isLoggedIn,
-        (bool isLoggedIn) {
+        (bool? isLoggedIn) {
           if (getCurrentScreen(context) != Routes.splashScreen) {
             return;
           }
@@ -45,7 +46,7 @@ class _SplashScreenState extends SfWidget<SplashScreen> {
     return super.onInitApp();
   }
 
-  void handleIsLoggedIn({bool isLoggedIn}) {
+  void handleIsLoggedIn({bool? isLoggedIn}) {
     navigateToHome(context);
   }
 
@@ -57,11 +58,7 @@ class _SplashScreenState extends SfWidget<SplashScreen> {
 
   @override
   void dispose() {
-    if (_disposers != null) {
-      _disposers.map((a) {
-        a();
-      });
-    }
+    disposeStore(_disposers);
 
     super.dispose();
   }
