@@ -44,11 +44,13 @@ bool isDarkMode(BuildContext context) {
 /// Get app theme [AppTheme]
 AppTheme getAppTheme(ThemeMode? mode) {
   if (mode == ThemeMode.light) {
+    // declared in [lib/common/di/app_theme_di.dart]
     final _lightTheme = getIt.get<AppTheme>(instanceName: 'lightTheme');
 
     return _lightTheme;
   }
 
+  // declared in [lib/common/di/app_theme_di.dart]
   final _darkTheme = getIt.get<AppTheme>(instanceName: 'darkTheme');
 
   return _darkTheme;

@@ -158,11 +158,6 @@ class AppTheme {
         headline4: _originalBodyText1.copyWith(),
         headline3: _originalBodyText1.copyWith(),
       ),
-      colorScheme: ColorScheme.fromSwatch(
-        primarySwatch: _primarySwatch,
-      ).copyWith(
-        secondary: palette.accentColor,
-      ),
     );
   }
 }

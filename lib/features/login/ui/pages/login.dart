@@ -25,7 +25,14 @@ class _LoginScreenState extends SfWidget<LoginScreen> {
 
   LoginStore get _loginStore => getIt<LoginStore>();
 
-  late List<ReactionDisposer> _disposers;
+  late final List<ReactionDisposer> _disposers;
+
+  @override
+  void initState() {
+    _disposers = [];
+
+    super.initState();
+  }
 
   @override
   void didChangeDependencies() {

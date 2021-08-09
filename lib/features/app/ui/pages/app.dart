@@ -40,7 +40,7 @@ class AppScreen extends StatelessWidget {
           builder: (context, nativeNavigator) {
             setErrorBuilder();
 
-            return Container();
+            return nativeNavigator!;
           },
           title: Strings.APP_NAME,
           theme: getAppThemeData(_appStore.theme!.mode),

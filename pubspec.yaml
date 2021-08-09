@@ -71,7 +71,7 @@ dependencies:
   logger: ^1.0.0
 
   # Routing
-  auto_route: ^2.2.0
+  auto_route: ^2.3.0
 
   # snackbar
   another_flushbar: #^1.10.23

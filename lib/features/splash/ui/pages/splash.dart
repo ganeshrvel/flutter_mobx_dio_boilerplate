@@ -22,9 +22,7 @@ class _SplashScreenState extends SfWidget<SplashScreen> {
   late final List<ReactionDisposer> _disposers;
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
+  void initState() {
     _disposers = [
       reaction(
         (_) => _loginStore.isLoggedIn,
@@ -37,6 +35,12 @@ class _SplashScreenState extends SfWidget<SplashScreen> {
         },
       ),
     ];
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
   }
 
   @override

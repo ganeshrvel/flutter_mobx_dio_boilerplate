@@ -36,6 +36,8 @@ class _HomeScreenState extends SfWidget {
 
   @override
   void initState() {
+    _disposers = [];
+
     super.initState();
   }
 

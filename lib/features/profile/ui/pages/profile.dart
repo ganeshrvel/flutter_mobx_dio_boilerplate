@@ -11,7 +11,14 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends SfWidget {
-  late final List<ReactionDisposer>? _disposers;
+  late final List<ReactionDisposer> _disposers;
+
+  @override
+  void initState() {
+    _disposers = [];
+
+    super.initState();
+  }
 
   @override
   void didChangeDependencies() {
@@ -23,11 +30,6 @@ class _ProfileScreenState extends SfWidget {
     disposeStore(_disposers);
 
     super.dispose();
-  }
-
-  @override
-  void initState() {
-    super.initState();
   }
 
   @override
