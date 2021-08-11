@@ -64,7 +64,7 @@ class AppLocalDataSource {
       final pref = _sharedPreferences;
 
       return DC.data(
-        await pref.setString(SharedPreferencesKeys.APP_LANGUAGE_SETTING, ''),
+        await pref.remove(SharedPreferencesKeys.APP_LANGUAGE_SETTING),
       );
     } on Exception {
       return DC.error(
@@ -122,7 +122,7 @@ class AppLocalDataSource {
       final pref = _sharedPreferences;
 
       return DC.data(
-        await pref.setString(SharedPreferencesKeys.APP_THEME_SETTING, ''),
+        await pref.remove(SharedPreferencesKeys.APP_THEME_SETTING),
       );
     } on Exception {
       return DC.error(

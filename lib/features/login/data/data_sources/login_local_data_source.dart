@@ -72,7 +72,7 @@ class LoginLocalDataSource {
       final pref = sharedPreferences;
 
       return DC.data(
-        await pref.setString(SharedPreferencesKeys.AUTH_TOKEN, ''),
+        await pref.remove(SharedPreferencesKeys.AUTH_TOKEN),
       );
     } on Exception {
       return DC.error(
