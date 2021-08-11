@@ -54,10 +54,6 @@ This boilerplate uses code generation tools to automatically generate code durin
 Activate pre-commit hooks
 ```shell
 $ git config core.hooksPath .githooks/
-$ which flutter
-
-# Open .githooks/pre-commit in your IDE
-# Replace all the occurrences of `/path/to/flutter/bin/flutter` with the output of `which flutter`
 ```
 
 To activate network connection in macOS, add the following lines to your *macos/Runner/DebugProfile.entitlements* and *macos/Runner/Release.entitlements*
